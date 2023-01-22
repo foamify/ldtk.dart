@@ -1,21 +1,13 @@
 /// LDtk parser for Dart
-///
-/// When updating,
-///
-/// quicktype settings:
-///   - Source type = JSON Schema,
-///   - Language = Dart,
-///   - Check 'Put encoder & decoder in Class',
-///   - Check 'Make all properties final'
-///
-/// After pasting, find "!," and replace with ",".
 library ldtk;
-
-export 'src/ldtk_base.dart';
-
 
 import 'dart:convert';
 
+// To parse this JSON data, do
+//
+//     final ldtk = ldtkFromJson(jsonString);
+
+import 'dart:convert';
 
 ///This file is a JSON schema of files created by LDtk level editor (https://ldtk.io).
 ///
@@ -64,132 +56,132 @@ class Ldtk {
   ///This object is not actually used by LDtk. It ONLY exists to force explicit references to
   ///all types, to make sure QuickType finds them and integrate all of them. Otherwise,
   ///Quicktype will drop types that are not explicitely used.
-  final ForcedRefs? forcedRefs;
+  ForcedRefs? forcedRefs;
 
   ///LDtk application build identifier.<br/>  This is only used to identify the LDtk version
   ///that generated this particular project file, which can be useful for specific bug fixing.
   ///Note that the build identifier is just the date of the release, so it's not unique to
   ///each user (one single global ID per LDtk public release), and as a result, completely
   ///anonymous.
-  final double? appBuildId;
+  double? appBuildId;
 
   ///Number of backup files to keep, if the `backupOnSave` is TRUE
-  final int? backupLimit;
+  int? backupLimit;
 
   ///If TRUE, an extra copy of the project will be created in a sub folder, when saving.
-  final bool? backupOnSave;
+  bool? backupOnSave;
 
   ///Project background color
-  final String? bgColor;
+  String? bgColor;
 
   ///An array of command lines that can be ran manually by the user
-  final List<LdtkCustomCommand>? customCommands;
+  List<LdtkCustomCommand>? customCommands;
 
   ///Default grid size for new layers
-  final int? defaultGridSize;
+  int? defaultGridSize;
 
   ///Default background color of levels
-  final String? defaultLevelBgColor;
+  String? defaultLevelBgColor;
 
   ///**WARNING**: this field will move to the `worlds` array after the "multi-worlds" update.
   ///It will then be `null`. You can enable the Multi-worlds advanced project option to enable
   ///the change immediately.<br/><br/>  Default new level height
-  final int? defaultLevelHeight;
+  int? defaultLevelHeight;
 
   ///**WARNING**: this field will move to the `worlds` array after the "multi-worlds" update.
   ///It will then be `null`. You can enable the Multi-worlds advanced project option to enable
   ///the change immediately.<br/><br/>  Default new level width
-  final int? defaultLevelWidth;
+  int? defaultLevelWidth;
 
   ///Default X pivot (0 to 1) for new entities
-  final double? defaultPivotX;
+  double? defaultPivotX;
 
   ///Default Y pivot (0 to 1) for new entities
-  final double? defaultPivotY;
+  double? defaultPivotY;
 
   ///A structure containing all the definitions of this project
-  final Definitions? defs;
+  Definitions? defs;
 
   ///If TRUE, the exported PNGs will include the level background (color or image).
-  final bool? exportLevelBg;
+  bool? exportLevelBg;
 
   ///**WARNING**: this deprecated value is no longer exported since version 0.9.3  Replaced
   ///by: `imageExportMode`
-  final bool? exportPng;
+  bool? exportPng;
 
   ///If TRUE, a Tiled compatible file will also be generated along with the LDtk JSON file
   ///(default is FALSE)
-  final bool? exportTiled;
+  bool? exportTiled;
 
   ///If TRUE, one file will be saved for the project (incl. all its definitions) and one file
   ///in a sub-folder for each level.
-  final bool? externalLevels;
+  bool? externalLevels;
 
   ///An array containing various advanced flags (ie. options or other states). Possible
   ///values: `DiscardPreCsvIntGrid`, `ExportPreCsvIntGridFormat`, `IgnoreBackupSuggest`,
   ///`PrependIndexToLevelFileNames`, `MultiWorlds`, `UseMultilinesType`
-  final List<Flag>? flags;
+  List<Flag>? flags;
 
   ///Naming convention for Identifiers (first-letter uppercase, full uppercase etc.) Possible
   ///values: `Capitalize`, `Uppercase`, `Lowercase`, `Free`
-  final IdentifierStyle? identifierStyle;
+  IdentifierStyle? identifierStyle;
 
   ///Unique project identifier
-  final String? iid;
+  String? iid;
 
   ///"Image export" option when saving project. Possible values: `None`, `OneImagePerLayer`,
   ///`OneImagePerLevel`, `LayersAndLevels`
-  final ImageExportMode? imageExportMode;
+  ImageExportMode? imageExportMode;
 
   ///File format version
-  final String? jsonVersion;
+  String? jsonVersion;
 
   ///The default naming convention for level identifiers.
-  final String? levelNamePattern;
+  String? levelNamePattern;
 
   ///All levels. The order of this array is only relevant in `LinearHorizontal` and
   ///`linearVertical` world layouts (see `worldLayout` value).<br/>  Otherwise, you should
   ///refer to the `worldX`,`worldY` coordinates of each Level.
-  final List<Level>? levels;
+  List<Level>? levels;
 
   ///If TRUE, the Json is partially minified (no indentation, nor line breaks, default is
   ///FALSE)
-  final bool? minifyJson;
+  bool? minifyJson;
 
   ///Next Unique integer ID available
-  final int? nextUid;
+  int? nextUid;
 
   ///File naming pattern for exported PNGs
-  final String? pngFilePattern;
+  String? pngFilePattern;
 
   ///If TRUE, a very simplified will be generated on saving, for quicker & easier engine
   ///integration.
-  final bool? simplifiedExport;
+  bool? simplifiedExport;
 
   ///All instances of entities that have their `exportToToc` flag enabled are listed in this
   ///array.
-  final List<LdtkTableOfContentEntry>? toc;
+  List<LdtkTableOfContentEntry>? toc;
 
   ///This optional description is used by LDtk Samples to show up some informations and
   ///instructions.
-  final String? tutorialDesc;
+  String? tutorialDesc;
 
   ///**WARNING**: this field will move to the `worlds` array after the "multi-worlds" update.
   ///It will then be `null`. You can enable the Multi-worlds advanced project option to enable
   ///the change immediately.<br/><br/>  Height of the world grid in pixels.
-  final int? worldGridHeight;
+  int? worldGridHeight;
 
   ///**WARNING**: this field will move to the `worlds` array after the "multi-worlds" update.
   ///It will then be `null`. You can enable the Multi-worlds advanced project option to enable
   ///the change immediately.<br/><br/>  Width of the world grid in pixels.
-  final int? worldGridWidth;
+  int? worldGridWidth;
 
   ///**WARNING**: this field will move to the `worlds` array after the "multi-worlds" update.
   ///It will then be `null`. You can enable the Multi-worlds advanced project option to enable
   ///the change immediately.<br/><br/>  An enum that describes how levels are organized in
   ///this project (ie. linearly or in a 2D space). Possible values: &lt;`null`&gt;, `Free`,
   ///`GridVania`, `LinearHorizontal`, `LinearVertical`
-  final WorldLayout? worldLayout;
+  WorldLayout? worldLayout;
 
   ///This array is not used yet in current LDtk version (so, for now, it's always
   ///empty).<br/><br/>In a later update, it will be possible to have multiple Worlds in a
@@ -202,7 +194,7 @@ class Ldtk {
   ///array to the `worlds` array, along with world layout related values (eg. `worldGridWidth`
   ///etc).<br/><br/>If you want to start supporting this future update easily, please refer to
   ///this documentation: https://github.com/deepnight/ldtk/issues/231
-  final List<World>? worlds;
+  List<World>? worlds;
 
   factory Ldtk.fromRawJson(String str) => Ldtk.fromJson(json.decode(str));
 
@@ -289,10 +281,10 @@ class LdtkCustomCommand {
     this.when,
   });
 
-  final String? command;
+  String? command;
 
   ///Possible values: `Manual`, `AfterLoad`, `BeforeSave`, `AfterSave`
-  final When? when;
+  When? when;
 
   factory LdtkCustomCommand.fromRawJson(String str) => LdtkCustomCommand.fromJson(json.decode(str));
 
@@ -341,23 +333,23 @@ class Definitions {
 
 
   ///All entities definitions, including their custom fields
-  final List<EntityDefinition>? entities;
+  List<EntityDefinition>? entities;
 
   ///All internal enums
-  final List<EnumDefinition>? enums;
+  List<EnumDefinition>? enums;
 
   ///Note: external enums are exactly the same as `enums`, except they have a `relPath` to
   ///point to an external source file.
-  final List<EnumDefinition>? externalEnums;
+  List<EnumDefinition>? externalEnums;
 
   ///All layer definitions
-  final List<LayerDefinition>? layers;
+  List<LayerDefinition>? layers;
 
   ///All custom fields available to all levels.
-  final List<FieldDefinition>? levelFields;
+  List<FieldDefinition>? levelFields;
 
   ///All tilesets
-  final List<TilesetDefinition>? tilesets;
+  List<TilesetDefinition>? tilesets;
 
   factory Definitions.fromRawJson(String str) => Definitions.fromJson(json.decode(str));
 
@@ -416,88 +408,88 @@ class EntityDefinition {
 
 
   ///Base entity color
-  final String? color;
+  String? color;
 
   ///User defined documentation for this element to provide help/tips to level designers.
-  final String? doc;
+  String? doc;
 
   ///If enabled, all instances of this entity will be listed in the project "Table of content"
   ///object.
-  final bool? exportToToc;
+  bool? exportToToc;
 
   ///Array of field definitions
-  final List<FieldDefinition>? fieldDefs;
-  final double? fillOpacity;
+  List<FieldDefinition>? fieldDefs;
+  double? fillOpacity;
 
   ///Pixel height
-  final int? height;
-  final bool? hollow;
+  int? height;
+  bool? hollow;
 
   ///User defined unique identifier
-  final String? identifier;
+  String? identifier;
 
   ///Only applies to entities resizable on both X/Y. If TRUE, the entity instance width/height
   ///will keep the same aspect ratio as the definition.
-  final bool? keepAspectRatio;
+  bool? keepAspectRatio;
 
   ///Possible values: `DiscardOldOnes`, `PreventAdding`, `MoveLastOne`
-  final LimitBehavior? limitBehavior;
+  LimitBehavior? limitBehavior;
 
   ///If TRUE, the maxCount is a "per world" limit, if FALSE, it's a "per level". Possible
   ///values: `PerLayer`, `PerLevel`, `PerWorld`
-  final LimitScope? limitScope;
-  final double? lineOpacity;
+  LimitScope? limitScope;
+  double? lineOpacity;
 
   ///Max instances count
-  final int? maxCount;
+  int? maxCount;
 
   ///An array of 4 dimensions for the up/right/down/left borders (in this order) when using
   ///9-slice mode for `tileRenderMode`.<br/>  If the tileRenderMode is not NineSlice, then
   ///this array is empty.<br/>  See: https://en.wikipedia.org/wiki/9-slice_scaling
-  final List<int>? nineSliceBorders;
+  List<int>? nineSliceBorders;
 
   ///Pivot X coordinate (from 0 to 1.0)
-  final double? pivotX;
+  double? pivotX;
 
   ///Pivot Y coordinate (from 0 to 1.0)
-  final double? pivotY;
+  double? pivotY;
 
   ///Possible values: `Rectangle`, `Ellipse`, `Tile`, `Cross`
-  final RenderMode? renderMode;
+  RenderMode? renderMode;
 
   ///If TRUE, the entity instances will be resizable horizontally
-  final bool? resizableX;
+  bool? resizableX;
 
   ///If TRUE, the entity instances will be resizable vertically
-  final bool? resizableY;
+  bool? resizableY;
 
   ///Display entity name in editor
-  final bool? showName;
+  bool? showName;
 
   ///An array of strings that classifies this entity
-  final List<String>? tags;
+  List<String>? tags;
 
   ///**WARNING**: this deprecated value is no longer exported since version 1.2.0  Replaced
   ///by: `tileRect`
-  final int? tileId;
-  final double? tileOpacity;
+  int? tileId;
+  double? tileOpacity;
 
   ///An object representing a rectangle from an existing Tileset
-  final TilesetRectangle? tileRect;
+  TilesetRectangle? tileRect;
 
   ///An enum describing how the the Entity tile is rendered inside the Entity bounds. Possible
   ///values: `Cover`, `FitInside`, `Repeat`, `Stretch`, `FullSizeCropped`,
   ///`FullSizeUncropped`, `NineSlice`
-  final TileRenderMode? tileRenderMode;
+  TileRenderMode? tileRenderMode;
 
   ///Tileset ID used for optional tile display
-  final int? tilesetId;
+  int? tilesetId;
 
   ///Unique Int identifier
-  final int? uid;
+  int? uid;
 
   ///Pixel width
-  final int? width;
+  int? width;
 
   factory EntityDefinition.fromRawJson(String str) => EntityDefinition.fromJson(json.decode(str));
 
@@ -609,87 +601,87 @@ class FieldDefinition {
   ///field will look like `Array<...>` (eg. `Array<Int>`, `Array<Point>` etc.)<br/>  NOTE: if
   ///you enable the advanced option **Use Multilines type**, you will have "*Multilines*"
   ///instead of "*String*" when relevant.
-  final String? type;
+  String? type;
 
   ///Optional list of accepted file extensions for FilePath value type. Includes the dot:
   ///`.ext`
-  final List<String>? acceptFileTypes;
+  List<String>? acceptFileTypes;
 
   ///Possible values: `Any`, `OnlySame`, `OnlyTags`
-  final AllowedRefs? allowedRefs;
-  final List<String>? allowedRefTags;
-  final bool? allowOutOfLevelRef;
+  AllowedRefs? allowedRefs;
+  List<String>? allowedRefTags;
+  bool? allowOutOfLevelRef;
 
   ///Array max length
-  final int? arrayMaxLength;
+  int? arrayMaxLength;
 
   ///Array min length
-  final int? arrayMinLength;
-  final bool? autoChainRef;
+  int? arrayMinLength;
+  bool? autoChainRef;
 
   ///TRUE if the value can be null. For arrays, TRUE means it can contain null values
   ///(exception: array of Points can't have null values).
-  final bool? canBeNull;
+  bool? canBeNull;
 
   ///Default value if selected value is null or invalid.
-  final dynamic defaultOverride;
+  dynamic defaultOverride;
 
   ///User defined documentation for this field to provide help/tips to level designers about
   ///accepted values.
-  final String? doc;
-  final bool? editorAlwaysShow;
-  final bool? editorCutLongValues;
+  String? doc;
+  bool? editorAlwaysShow;
+  bool? editorCutLongValues;
 
   ///Possible values: `Hidden`, `ValueOnly`, `NameAndValue`, `EntityTile`, `Points`,
   ///`PointStar`, `PointPath`, `PointPathLoop`, `RadiusPx`, `RadiusGrid`,
   ///`ArrayCountWithLabel`, `ArrayCountNoLabel`, `RefLinkBetweenPivots`,
   ///`RefLinkBetweenCenters`
-  final EditorDisplayMode? editorDisplayMode;
+  EditorDisplayMode? editorDisplayMode;
 
   ///Possible values: `Above`, `Center`, `Beneath`
-  final EditorDisplayPos? editorDisplayPos;
+  EditorDisplayPos? editorDisplayPos;
 
   ///Possible values: `ZigZag`, `StraightArrow`, `CurvedArrow`, `ArrowsLine`, `DashedLine`
-  final EditorLinkStyle? editorLinkStyle;
-  final bool? editorShowInWorld;
-  final String? editorTextPrefix;
-  final String? editorTextSuffix;
+  EditorLinkStyle? editorLinkStyle;
+  bool? editorShowInWorld;
+  String? editorTextPrefix;
+  String? editorTextSuffix;
 
   ///User defined unique identifier
-  final String? identifier;
+  String? identifier;
 
   ///TRUE if the value is an array of multiple values
-  final bool? isArray;
+  bool? isArray;
 
   ///Max limit for value, if applicable
-  final double? max;
+  double? max;
 
   ///Min limit for value, if applicable
-  final double? min;
+  double? min;
 
   ///Optional regular expression that needs to be matched to accept values. Expected format:
   ///`/some_reg_ex/g`, with optional "i" flag.
-  final String? regex;
-  final bool? symmetricalRef;
+  String? regex;
+  bool? symmetricalRef;
 
   ///Possible values: &lt;`null`&gt;, `LangPython`, `LangRuby`, `LangJS`, `LangLua`, `LangC`,
   ///`LangHaxe`, `LangMarkdown`, `LangJson`, `LangXml`, `LangLog`
-  final TextLanguageMode? textLanguageMode;
+  TextLanguageMode? textLanguageMode;
 
   ///UID of the tileset used for a Tile
-  final int? tilesetUid;
+  int? tilesetUid;
 
   ///Internal enum representing the possible field types. Possible values: F_Int, F_Float,
   ///F_String, F_Text, F_Bool, F_Color, F_Enum(...), F_Point, F_Path, F_EntityRef, F_Tile
-  final String? fieldDefinitionType;
+  String? fieldDefinitionType;
 
   ///Unique Int identifier
-  final int? uid;
+  int? uid;
 
   ///If TRUE, the color associated with this field will override the Entity or Level default
   ///color in the editor UI. For Enum fields, this would be the color associated to their
   ///values.
-  final bool? useForSmartColor;
+  bool? useForSmartColor;
 
   factory FieldDefinition.fromRawJson(String str) => FieldDefinition.fromJson(json.decode(str));
 
@@ -878,19 +870,19 @@ class TilesetRectangle {
 
 
   ///Height in pixels
-  final int? h;
+  int? h;
 
   ///UID of the tileset
-  final int? tilesetUid;
+  int? tilesetUid;
 
   ///Width in pixels
-  final int? w;
+  int? w;
 
   ///X pixels coordinate of the top-left corner in the Tileset image
-  final int? x;
+  int? x;
 
   ///Y pixels coordinate of the top-left corner in the Tileset image
-  final int? y;
+  int? y;
 
   factory TilesetRectangle.fromRawJson(String str) => TilesetRectangle.fromJson(json.decode(str));
 
@@ -940,25 +932,25 @@ class EnumDefinition {
     this.values,
   });
 
-  final String? externalFileChecksum;
+  String? externalFileChecksum;
 
   ///Relative path to the external file providing this Enum
-  final String? externalRelPath;
+  String? externalRelPath;
 
   ///Tileset UID if provided
-  final int? iconTilesetUid;
+  int? iconTilesetUid;
 
   ///User defined unique identifier
-  final String? identifier;
+  String? identifier;
 
   ///An array of user-defined tags to organize the Enums
-  final List<String>? tags;
+  List<String>? tags;
 
   ///Unique Int identifier
-  final int? uid;
+  int? uid;
 
   ///All possible enum values, with their optional Tile infos.
-  final List<EnumValueDefinition>? values;
+  List<EnumValueDefinition>? values;
 
   factory EnumDefinition.fromRawJson(String str) => EnumDefinition.fromJson(json.decode(str));
 
@@ -996,16 +988,16 @@ class EnumValueDefinition {
 
   ///An array of 4 Int values that refers to the tile in the tileset image: `[ x, y, width,
   ///height ]`
-  final List<int>? tileSrcRect;
+  List<int>? tileSrcRect;
 
   ///Optional color
-  final int? color;
+  int? color;
 
   ///Enum value
-  final String? id;
+  String? id;
 
   ///The optional ID of the tile
-  final int? tileId;
+  int? tileId;
 
   factory EnumValueDefinition.fromRawJson(String str) => EnumValueDefinition.fromJson(json.decode(str));
 
@@ -1059,94 +1051,94 @@ class LayerDefinition {
 
 
   ///Type of the layer (*IntGrid, Entities, Tiles or AutoLayer*)
-  final String? type;
+  String? type;
 
   ///Contains all the auto-layer rule definitions.
-  final List<AutoLayerRuleGroup>? autoRuleGroups;
-  final int? autoSourceLayerDefUid;
+  List<AutoLayerRuleGroup>? autoRuleGroups;
+  int? autoSourceLayerDefUid;
 
   ///**WARNING**: this deprecated value is no longer exported since version 1.2.0  Replaced
   ///by: `tilesetDefUid`
-  final int? autoTilesetDefUid;
+  int? autoTilesetDefUid;
 
   ///Allow editor selections when the layer is not currently active.
-  final bool? canSelectWhenInactive;
+  bool? canSelectWhenInactive;
 
   ///Opacity of the layer (0 to 1.0)
-  final double? displayOpacity;
+  double? displayOpacity;
 
   ///User defined documentation for this element to provide help/tips to level designers.
-  final String? doc;
+  String? doc;
 
   ///An array of tags to forbid some Entities in this layer
-  final List<String>? excludedTags;
+  List<String>? excludedTags;
 
   ///Width and height of the grid in pixels
-  final int? gridSize;
+  int? gridSize;
 
   ///Height of the optional "guide" grid in pixels
-  final int? guideGridHei;
+  int? guideGridHei;
 
   ///Width of the optional "guide" grid in pixels
-  final int? guideGridWid;
-  final bool? hideFieldsWhenInactive;
+  int? guideGridWid;
+  bool? hideFieldsWhenInactive;
 
   ///Hide the layer from the list on the side of the editor view.
-  final bool? hideInList;
+  bool? hideInList;
 
   ///User defined unique identifier
-  final String? identifier;
+  String? identifier;
 
   ///Alpha of this layer when it is not the active one.
-  final double? inactiveOpacity;
+  double? inactiveOpacity;
 
   ///An array that defines extra optional info for each IntGrid value.<br/>  WARNING: the
   ///array order is not related to actual IntGrid values! As user can re-order IntGrid values
   ///freely, you may value "2" before value "1" in this array.
-  final List<IntGridValueDefinition>? intGridValues;
+  List<IntGridValueDefinition>? intGridValues;
 
   ///Parallax horizontal factor (from -1 to 1, defaults to 0) which affects the scrolling
   ///speed of this layer, creating a fake 3D (parallax) effect.
-  final double? parallaxFactorX;
+  double? parallaxFactorX;
 
   ///Parallax vertical factor (from -1 to 1, defaults to 0) which affects the scrolling speed
   ///of this layer, creating a fake 3D (parallax) effect.
-  final double? parallaxFactorY;
+  double? parallaxFactorY;
 
   ///If true (default), a layer with a parallax factor will also be scaled up/down accordingly.
-  final bool? parallaxScaling;
+  bool? parallaxScaling;
 
   ///X offset of the layer, in pixels (IMPORTANT: this should be added to the `LayerInstance`
   ///optional offset)
-  final int? pxOffsetX;
+  int? pxOffsetX;
 
   ///Y offset of the layer, in pixels (IMPORTANT: this should be added to the `LayerInstance`
   ///optional offset)
-  final int? pxOffsetY;
+  int? pxOffsetY;
 
   ///An array of tags to filter Entities that can be added to this layer
-  final List<String>? requiredTags;
+  List<String>? requiredTags;
 
   ///If the tiles are smaller or larger than the layer grid, the pivot value will be used to
   ///position the tile relatively its grid cell.
-  final double? tilePivotX;
+  double? tilePivotX;
 
   ///If the tiles are smaller or larger than the layer grid, the pivot value will be used to
   ///position the tile relatively its grid cell.
-  final double? tilePivotY;
+  double? tilePivotY;
 
   ///Reference to the default Tileset UID being used by this layer definition.<br/>
   ///**WARNING**: some layer *instances* might use a different tileset. So most of the time,
   ///you should probably use the `__tilesetDefUid` value found in layer instances.<br/>  Note:
   ///since version 1.0.0, the old `autoTilesetDefUid` was removed and merged into this value.
-  final int? tilesetDefUid;
+  int? tilesetDefUid;
 
   ///Type of the layer as Haxe Enum Possible values: `IntGrid`, `Entities`, `Tiles`,
   ///`AutoLayer`
-  final Type? layerDefinitionType;
+  Type? layerDefinitionType;
 
   ///Unique Int identifier
-  final int? uid;
+  int? uid;
 
   factory LayerDefinition.fromRawJson(String str) => LayerDefinition.fromJson(json.decode(str));
 
@@ -1224,15 +1216,15 @@ class AutoLayerRuleGroup {
     this.usesWizard,
   });
 
-  final bool? active;
+  bool? active;
 
   ///*This field was removed in 1.0.0 and should no longer be used.*
-  final bool? collapsed;
-  final bool? isOptional;
-  final String? name;
-  final List<AutoLayerRuleDefinition>? rules;
-  final int? uid;
-  final bool? usesWizard;
+  bool? collapsed;
+  bool? isOptional;
+  String? name;
+  List<AutoLayerRuleDefinition>? rules;
+  int? uid;
+  bool? usesWizard;
 
   factory AutoLayerRuleGroup.fromRawJson(String str) => AutoLayerRuleGroup.fromJson(json.decode(str));
 
@@ -1291,65 +1283,65 @@ class AutoLayerRuleDefinition {
 
 
   ///If FALSE, the rule effect isn't applied, and no tiles are generated.
-  final bool? active;
+  bool? active;
 
   ///When TRUE, the rule will prevent other rules to be applied in the same cell if it matches
   ///(TRUE by default).
-  final bool? breakOnMatch;
+  bool? breakOnMatch;
 
   ///Chances for this rule to be applied (0 to 1)
-  final double? chance;
+  double? chance;
 
   ///Checker mode Possible values: `None`, `Horizontal`, `Vertical`
-  final Checker? checker;
+  Checker? checker;
 
   ///If TRUE, allow rule to be matched by flipping its pattern horizontally
-  final bool? flipX;
+  bool? flipX;
 
   ///If TRUE, allow rule to be matched by flipping its pattern vertically
-  final bool? flipY;
+  bool? flipY;
 
   ///Default IntGrid value when checking cells outside of level bounds
-  final int? outOfBoundsValue;
+  int? outOfBoundsValue;
 
   ///Rule pattern (size x size)
-  final List<int>? pattern;
+  List<int>? pattern;
 
   ///If TRUE, enable Perlin filtering to only apply rule on specific random area
-  final bool? perlinActive;
-  final double? perlinOctaves;
-  final double? perlinScale;
-  final double? perlinSeed;
+  bool? perlinActive;
+  double? perlinOctaves;
+  double? perlinScale;
+  double? perlinSeed;
 
   ///X pivot of a tile stamp (0-1)
-  final double? pivotX;
+  double? pivotX;
 
   ///Y pivot of a tile stamp (0-1)
-  final double? pivotY;
+  double? pivotY;
 
   ///Pattern width & height. Should only be 1,3,5 or 7.
-  final int? size;
+  int? size;
 
   ///Array of all the tile IDs. They are used randomly or as stamps, based on `tileMode` value.
-  final List<int>? tileIds;
+  List<int>? tileIds;
 
   ///Defines how tileIds array is used Possible values: `Single`, `Stamp`
-  final TileMode? tileMode;
+  TileMode? tileMode;
 
   ///Unique Int identifier
-  final int? uid;
+  int? uid;
 
   ///X cell coord modulo
-  final int? xModulo;
+  int? xModulo;
 
   ///X cell start offset
-  final int? xOffset;
+  int? xOffset;
 
   ///Y cell coord modulo
-  final int? yModulo;
+  int? yModulo;
 
   ///Y cell start offset
-  final int? yOffset;
+  int? yOffset;
 
   factory AutoLayerRuleDefinition.fromRawJson(String str) => AutoLayerRuleDefinition.fromJson(json.decode(str));
 
@@ -1434,13 +1426,13 @@ class IntGridValueDefinition {
     this.value,
   });
 
-  final String? color;
+  String? color;
 
   ///User defined unique identifier
-  final String? identifier;
+  String? identifier;
 
   ///The IntGrid value itself
-  final int? value;
+  int? value;
 
   factory IntGridValueDefinition.fromRawJson(String str) => IntGridValueDefinition.fromJson(json.decode(str));
 
@@ -1498,57 +1490,57 @@ class TilesetDefinition {
 
 
   ///Grid-based height
-  final int? cHei;
+  int? cHei;
 
   ///Grid-based width
-  final int? cWid;
+  int? cWid;
 
   ///The following data is used internally for various optimizations. It's always synced with
   ///source image changes.
-  final Map<String, dynamic>? cachedPixelData;
+  Map<String, dynamic>? cachedPixelData;
 
   ///An array of custom tile metadata
-  final List<TileCustomMetadata>? customData;
+  List<TileCustomMetadata>? customData;
 
   ///If this value is set, then it means that this atlas uses an internal LDtk atlas image
   ///instead of a loaded one. Possible values: &lt;`null`&gt;, `LdtkIcons`
-  final EmbedAtlas? embedAtlas;
+  EmbedAtlas? embedAtlas;
 
   ///Tileset tags using Enum values specified by `tagsSourceEnumId`. This array contains 1
   ///element per Enum value, which contains an array of all Tile IDs that are tagged with it.
-  final List<EnumTagValue>? enumTags;
+  List<EnumTagValue>? enumTags;
 
   ///User defined unique identifier
-  final String? identifier;
+  String? identifier;
 
   ///Distance in pixels from image borders
-  final int? padding;
+  int? padding;
 
   ///Image height in pixels
-  final int? pxHei;
+  int? pxHei;
 
   ///Image width in pixels
-  final int? pxWid;
+  int? pxWid;
 
   ///Path to the source file, relative to the current project JSON file<br/>  It can be null
   ///if no image was provided, or when using an embed atlas.
-  final String? relPath;
+  String? relPath;
 
   ///Array of group of tiles selections, only meant to be used in the editor
-  final List<Map<String, dynamic>>? savedSelections;
+  List<Map<String, dynamic>>? savedSelections;
 
   ///Space in pixels between all tiles
-  final int? spacing;
+  int? spacing;
 
   ///An array of user-defined tags to organize the Tilesets
-  final List<String>? tags;
+  List<String>? tags;
 
   ///Optional Enum definition UID used for this tileset meta-data
-  final int? tagsSourceEnumUid;
-  final int? tileGridSize;
+  int? tagsSourceEnumUid;
+  int? tileGridSize;
 
   ///Unique Intidentifier
-  final int? uid;
+  int? uid;
 
   factory TilesetDefinition.fromRawJson(String str) => TilesetDefinition.fromJson(json.decode(str));
 
@@ -1603,8 +1595,8 @@ class TileCustomMetadata {
     this.tileId,
   });
 
-  final String? data;
-  final int? tileId;
+  String? data;
+  int? tileId;
 
   factory TileCustomMetadata.fromRawJson(String str) => TileCustomMetadata.fromJson(json.decode(str));
 
@@ -1635,8 +1627,8 @@ class EnumTagValue {
     this.tileIds,
   });
 
-  final String? enumValueId;
-  final List<int>? tileIds;
+  String? enumValueId;
+  List<int>? tileIds;
 
   factory EnumTagValue.fromRawJson(String str) => EnumTagValue.fromJson(json.decode(str));
 
@@ -1698,32 +1690,32 @@ class ForcedRefs {
     this.world,
   });
 
-  final AutoLayerRuleGroup? autoLayerRuleGroup;
-  final AutoLayerRuleDefinition? autoRuleDef;
-  final LdtkCustomCommand? customCommand;
-  final Definitions? definitions;
-  final EntityDefinition? entityDef;
-  final EntityInstance? entityInstance;
-  final ReferenceToAnEntityInstance? entityReferenceInfos;
-  final EnumDefinition? enumDef;
-  final EnumValueDefinition? enumDefValues;
-  final EnumTagValue? enumTagValue;
-  final FieldDefinition? fieldDef;
-  final FieldInstance? fieldInstance;
-  final GridPoint? gridPoint;
-  final IntGridValueDefinition? intGridValueDef;
-  final IntGridValueInstance? intGridValueInstance;
-  final LayerDefinition? layerDef;
-  final LayerInstance? layerInstance;
-  final Level? level;
-  final LevelBackgroundPosition? levelBgPosInfos;
-  final NeighbourLevel? neighbourLevel;
-  final LdtkTableOfContentEntry? tableOfContentEntry;
-  final TileInstance? tile;
-  final TileCustomMetadata? tileCustomMetadata;
-  final TilesetDefinition? tilesetDef;
-  final TilesetRectangle? tilesetRect;
-  final World? world;
+  AutoLayerRuleGroup? autoLayerRuleGroup;
+  AutoLayerRuleDefinition? autoRuleDef;
+  LdtkCustomCommand? customCommand;
+  Definitions? definitions;
+  EntityDefinition? entityDef;
+  EntityInstance? entityInstance;
+  ReferenceToAnEntityInstance? entityReferenceInfos;
+  EnumDefinition? enumDef;
+  EnumValueDefinition? enumDefValues;
+  EnumTagValue? enumTagValue;
+  FieldDefinition? fieldDef;
+  FieldInstance? fieldInstance;
+  GridPoint? gridPoint;
+  IntGridValueDefinition? intGridValueDef;
+  IntGridValueInstance? intGridValueInstance;
+  LayerDefinition? layerDef;
+  LayerInstance? layerInstance;
+  Level? level;
+  LevelBackgroundPosition? levelBgPosInfos;
+  NeighbourLevel? neighbourLevel;
+  LdtkTableOfContentEntry? tableOfContentEntry;
+  TileInstance? tile;
+  TileCustomMetadata? tileCustomMetadata;
+  TilesetDefinition? tilesetDef;
+  TilesetRectangle? tilesetRect;
+  World? world;
 
   factory ForcedRefs.fromRawJson(String str) => ForcedRefs.fromJson(json.decode(str));
 
@@ -1806,45 +1798,45 @@ class EntityInstance {
 
 
   ///Grid-based coordinates (`[x,y]` format)
-  final List<int>? grid;
+  List<int>? grid;
 
   ///Entity definition identifier
-  final String? identifier;
+  String? identifier;
 
   ///Pivot coordinates  (`[x,y]` format, values are from 0 to 1) of the Entity
-  final List<double>? pivot;
+  List<double>? pivot;
 
   ///The entity "smart" color, guessed from either Entity definition, or one its field
   ///instances.
-  final String? smartColor;
+  String? smartColor;
 
   ///Array of tags defined in this Entity definition
-  final List<String>? tags;
+  List<String>? tags;
 
   ///Optional TilesetRect used to display this entity (it could either be the default Entity
   ///tile, or some tile provided by a field value, like an Enum).
-  final TilesetRectangle? tile;
+  TilesetRectangle? tile;
 
   ///Reference of the **Entity definition** UID
-  final int? defUid;
+  int? defUid;
 
   ///An array of all custom fields and their values.
-  final List<FieldInstance>? fieldInstances;
+  List<FieldInstance>? fieldInstances;
 
   ///Entity height in pixels. For non-resizable entities, it will be the same as Entity
   ///definition.
-  final int? height;
+  int? height;
 
   ///Unique instance identifier
-  final String? iid;
+  String? iid;
 
   ///Pixel coordinates (`[x,y]` format) in current level coordinate space. Don't forget
   ///optional layer offsets, if they exist!
-  final List<int>? px;
+  List<int>? px;
 
   ///Entity width in pixels. For non-resizable entities, it will be the same as Entity
   ///definition.
-  final int? width;
+  int? width;
 
   factory EntityInstance.fromRawJson(String str) => EntityInstance.fromJson(json.decode(str));
 
@@ -1893,16 +1885,16 @@ class FieldInstance {
 
 
   ///Field definition identifier
-  final String? identifier;
+  String? identifier;
 
   ///Optional TilesetRect used to display this field (this can be the field own Tile, or some
   ///other Tile guessed from the value, like an Enum).
-  final TilesetRectangle? tile;
+  TilesetRectangle? tile;
 
   ///Type of the field, such as `Int`, `Float`, `String`, `Enum(my_enum_name)`, `Bool`,
   ///etc.<br/>  NOTE: if you enable the advanced option **Use Multilines type**, you will have
   ///"*Multilines*" instead of "*String*" when relevant.
-  final String? type;
+  String? type;
 
   ///Actual value of the field instance. The value type varies, depending on `__type`:<br/>
   ///- For **classic types** (ie. Integer, Float, Boolean, String, Text and FilePath), you
@@ -1913,13 +1905,13 @@ class FieldInstance {
   ///[TilesetRect](#ldtk-TilesetRect) object.<br/>   - For **EntityRef**, the value is an
   ///[EntityReferenceInfos](#ldtk-EntityReferenceInfos) object.<br/><br/>  If the field is an
   ///array, then this `__value` will also be a JSON array.
-  final dynamic value;
+  dynamic value;
 
   ///Reference of the **Field definition** UID
-  final int? defUid;
+  int? defUid;
 
   ///Editor internal raw values
-  final List<dynamic>? realEditorValues;
+  List<dynamic>? realEditorValues;
 
   factory FieldInstance.fromRawJson(String str) => FieldInstance.fromJson(json.decode(str));
 
@@ -1956,16 +1948,16 @@ class ReferenceToAnEntityInstance {
 
 
   ///IID of the refered EntityInstance
-  final String? entityIid;
+  String? entityIid;
 
   ///IID of the LayerInstance containing the refered EntityInstance
-  final String? layerIid;
+  String? layerIid;
 
   ///IID of the Level containing the refered EntityInstance
-  final String? levelIid;
+  String? levelIid;
 
   ///IID of the World containing the refered EntityInstance
-  final String? worldIid;
+  String? worldIid;
 
   factory ReferenceToAnEntityInstance.fromRawJson(String str) => ReferenceToAnEntityInstance.fromJson(json.decode(str));
 
@@ -1996,10 +1988,10 @@ class GridPoint {
 
 
   ///X grid-based coordinate
-  final int? cx;
+  int? cx;
 
   ///Y grid-based coordinate
-  final int? cy;
+  int? cy;
 
   factory GridPoint.fromRawJson(String str) => GridPoint.fromJson(json.decode(str));
 
@@ -2026,10 +2018,10 @@ class IntGridValueInstance {
 
 
   ///Coordinate ID in the layer grid
-  final int? coordId;
+  int? coordId;
 
   ///IntGrid value
-  final int? v;
+  int? v;
 
   factory IntGridValueInstance.fromRawJson(String str) => IntGridValueInstance.fromJson(json.decode(str));
 
@@ -2076,84 +2068,84 @@ class LayerInstance {
 
 
   ///Grid-based height
-  final int? cHei;
+  int? cHei;
 
   ///Grid-based width
-  final int? cWid;
+  int? cWid;
 
   ///Grid size
-  final int? gridSize;
+  int? gridSize;
 
   ///Layer definition identifier
-  final String? identifier;
+  String? identifier;
 
   ///Layer opacity as Float [0-1]
-  final double? opacity;
+  double? opacity;
 
   ///Total layer X pixel offset, including both instance and definition offsets.
-  final int? pxTotalOffsetX;
+  int? pxTotalOffsetX;
 
   ///Total layer Y pixel offset, including both instance and definition offsets.
-  final int? pxTotalOffsetY;
+  int? pxTotalOffsetY;
 
   ///The definition UID of corresponding Tileset, if any.
-  final int? tilesetDefUid;
+  int? tilesetDefUid;
 
   ///The relative path to corresponding Tileset, if any.
-  final String? tilesetRelPath;
+  String? tilesetRelPath;
 
   ///Layer type (possible values: IntGrid, Entities, Tiles or AutoLayer)
-  final String? type;
+  String? type;
 
   ///An array containing all tiles generated by Auto-layer rules. The array is already sorted
   ///in display order (ie. 1st tile is beneath 2nd, which is beneath 3rd etc.).<br/><br/>
   ///Note: if multiple tiles are stacked in the same cell as the result of different rules,
   ///all tiles behind opaque ones will be discarded.
-  final List<TileInstance>? autoLayerTiles;
-  final List<EntityInstance>? entityInstances;
-  final List<TileInstance>? gridTiles;
+  List<TileInstance>? autoLayerTiles;
+  List<EntityInstance>? entityInstances;
+  List<TileInstance>? gridTiles;
 
   ///Unique layer instance identifier
-  final String? iid;
+  String? iid;
 
   ///**WARNING**: this deprecated value is no longer exported since version 1.0.0  Replaced
   ///by: `intGridCsv`
-  final List<IntGridValueInstance>? intGrid;
+  List<IntGridValueInstance>? intGrid;
 
   ///A list of all values in the IntGrid layer, stored in CSV format (Comma Separated
   ///Values).<br/>  Order is from left to right, and top to bottom (ie. first row from left to
   ///right, followed by second row, etc).<br/>  `0` means "empty cell" and IntGrid values
   ///start at 1.<br/>  The array size is `__cWid` x `__cHei` cells.
-  final List<int>? intGridCsv;
+  List<int>? intGridCsv;
 
   ///Reference the Layer definition UID
-  final int? layerDefUid;
+  int? layerDefUid;
 
   ///Reference to the UID of the level containing this layer instance
-  final int? levelId;
+  int? levelId;
 
   ///An Array containing the UIDs of optional rules that were enabled in this specific layer
   ///instance.
-  final List<int>? optionalRules;
+  List<int>? optionalRules;
 
   ///This layer can use another tileset by overriding the tileset UID here.
-  final int? overrideTilesetUid;
+  int? overrideTilesetUid;
 
   ///X offset in pixels to render this layer, usually 0 (IMPORTANT: this should be added to
   ///the `LayerDef` optional offset, so you should probably prefer using `__pxTotalOffsetX`
   ///which contains the total offset value)
-  final int? pxOffsetX;
+  int? pxOffsetX;
 
   ///Y offset in pixels to render this layer, usually 0 (IMPORTANT: this should be added to
   ///the `LayerDef` optional offset, so you should probably prefer using `__pxTotalOffsetX`
   ///which contains the total offset value)
-  final int? pxOffsetY;
+  int? pxOffsetY;
 
   ///Random seed used for Auto-Layers rendering
-  final int? seed;
+  int? seed;
 
   ///Layer instance visibility
-  final bool? visible;
+  bool? visible;
 
   factory LayerInstance.fromRawJson(String str) => LayerInstance.fromJson(json.decode(str));
 
@@ -2228,22 +2220,22 @@ class TileInstance {
 
   ///Internal data used by the editor.<br/>  For auto-layer tiles: `[ruleId, coordId]`.<br/>
   ///For tile-layer tiles: `[coordId]`.
-  final List<int>? d;
+  List<int>? d;
 
   ///"Flip bits", a 2-bits integer to represent the mirror transformations of the tile.<br/>
   ///- Bit 0 = X flip<br/>   - Bit 1 = Y flip<br/>   Examples: f=0 (no flip), f=1 (X flip
   ///only), f=2 (Y flip only), f=3 (both flips)
-  final int? f;
+  int? f;
 
   ///Pixel coordinates of the tile in the **layer** (`[x,y]` format). Don't forget optional
   ///layer offsets, if they exist!
-  final List<int>? px;
+  List<int>? px;
 
   ///Pixel coordinates of the tile in the **tileset** (`[x,y]` format)
-  final List<int>? src;
+  List<int>? src;
 
   ///The *Tile ID* in the corresponding tileset.
-  final int? t;
+  int? t;
 
   factory TileInstance.fromRawJson(String str) => TileInstance.fromJson(json.decode(str));
 
@@ -2303,84 +2295,84 @@ class Level {
 
   ///Background color of the level (same as `bgColor`, except the default value is
   ///automatically used here if its value is `null`)
-  final String? bgColor;
+  String? bgColor;
 
   ///Position informations of the background image, if there is one.
-  final LevelBackgroundPosition? bgPos;
+  LevelBackgroundPosition? bgPos;
 
   ///An array listing all other levels touching this one on the world map.<br/>  Only relevant
   ///for world layouts where level spatial positioning is manual (ie. GridVania, Free). For
   ///Horizontal and Vertical layouts, this array is always empty.
-  final List<NeighbourLevel>? neighbours;
+  List<NeighbourLevel>? neighbours;
 
   ///The "guessed" color for this level in the editor, decided using either the background
   ///color or an existing custom field.
-  final String? smartColor;
+  String? smartColor;
 
   ///Background color of the level. If `null`, the project `defaultLevelBgColor` should be
   ///used.
-  final String? levelBgColor;
+  String? levelBgColor;
 
   ///Background image X pivot (0-1)
-  final double? bgPivotX;
+  double? bgPivotX;
 
   ///Background image Y pivot (0-1)
-  final double? bgPivotY;
+  double? bgPivotY;
 
   ///An enum defining the way the background image (if any) is positioned on the level. See
   ///`__bgPos` for resulting position info. Possible values: &lt;`null`&gt;, `Unscaled`,
   ///`Contain`, `Cover`, `CoverDirty`
-  final BgPos? levelBgPos;
+  BgPos? levelBgPos;
 
   ///The *optional* relative path to the level background image.
-  final String? bgRelPath;
+  String? bgRelPath;
 
   ///This value is not null if the project option "*Save levels separately*" is enabled. In
   ///this case, this **relative** path points to the level Json file.
-  final String? externalRelPath;
+  String? externalRelPath;
 
   ///An array containing this level custom field values.
-  final List<FieldInstance>? fieldInstances;
+  List<FieldInstance>? fieldInstances;
 
   ///User defined unique identifier
-  final String? identifier;
+  String? identifier;
 
   ///Unique instance identifier
-  final String? iid;
+  String? iid;
 
   ///An array containing all Layer instances. **IMPORTANT**: if the project option "*Save
   ///levels separately*" is enabled, this field will be `null`.<br/>  This array is **sorted
   ///in display order**: the 1st layer is the top-most and the last is behind.
-  final List<LayerInstance>? layerInstances;
+  List<LayerInstance>? layerInstances;
 
   ///Height of the level in pixels
-  final int? pxHei;
+  int? pxHei;
 
   ///Width of the level in pixels
-  final int? pxWid;
+  int? pxWid;
 
   ///Unique Int identifier
-  final int? uid;
+  int? uid;
 
   ///If TRUE, the level identifier will always automatically use the naming pattern as defined
   ///in `Project.levelNamePattern`. Becomes FALSE if the identifier is manually modified by
   ///user.
-  final bool? useAutoIdentifier;
+  bool? useAutoIdentifier;
 
   ///Index that represents the "depth" of the level in the world. Default is 0, greater means
   ///"above", lower means "below".<br/>  This value is mostly used for display only and is
   ///intended to make stacking of levels easier to manage.
-  final int? worldDepth;
+  int? worldDepth;
 
   ///World X coordinate in pixels.<br/>  Only relevant for world layouts where level spatial
   ///positioning is manual (ie. GridVania, Free). For Horizontal and Vertical layouts, the
   ///value is always -1 here.
-  final int? worldX;
+  int? worldX;
 
   ///World Y coordinate in pixels.<br/>  Only relevant for world layouts where level spatial
   ///positioning is manual (ie. GridVania, Free). For Horizontal and Vertical layouts, the
   ///value is always -1 here.
-  final int? worldY;
+  int? worldY;
 
   factory Level.fromRawJson(String str) => Level.fromJson(json.decode(str));
 
@@ -2448,15 +2440,15 @@ class LevelBackgroundPosition {
   ///An array of 4 float values describing the cropped sub-rectangle of the displayed
   ///background image. This cropping happens when original is larger than the level bounds.
   ///Array format: `[ cropX, cropY, cropWidth, cropHeight ]`
-  final List<double>? cropRect;
+  List<double>? cropRect;
 
   ///An array containing the `[scaleX,scaleY]` values of the **cropped** background image,
   ///depending on `bgPos` option.
-  final List<double>? scale;
+  List<double>? scale;
 
   ///An array containing the `[x,y]` pixel coordinates of the top-left corner of the
   ///**cropped** background image, depending on `bgPos` option.
-  final List<int>? topLeftPx;
+  List<int>? topLeftPx;
 
   factory LevelBackgroundPosition.fromRawJson(String str) => LevelBackgroundPosition.fromJson(json.decode(str));
 
@@ -2496,14 +2488,14 @@ class NeighbourLevel {
 
   ///A single lowercase character tipping on the level location (`n`orth, `s`outh, `w`est,
   ///`e`ast).
-  final String? dir;
+  String? dir;
 
   ///Neighbour Instance Identifier
-  final String? levelIid;
+  String? levelIid;
 
   ///**WARNING**: this deprecated value is no longer exported since version 1.2.0  Replaced
   ///by: `levelIid`
-  final int? levelUid;
+  int? levelUid;
 
   factory NeighbourLevel.fromRawJson(String str) => NeighbourLevel.fromJson(json.decode(str));
 
@@ -2528,8 +2520,8 @@ class LdtkTableOfContentEntry {
     this.instances,
   });
 
-  final String? identifier;
-  final List<ReferenceToAnEntityInstance>? instances;
+  String? identifier;
+  List<ReferenceToAnEntityInstance>? instances;
 
   factory LdtkTableOfContentEntry.fromRawJson(String str) => LdtkTableOfContentEntry.fromJson(json.decode(str));
 
@@ -2564,31 +2556,31 @@ class World {
 
 
   ///Default new level height
-  final int? defaultLevelHeight;
+  int? defaultLevelHeight;
 
   ///Default new level width
-  final int? defaultLevelWidth;
+  int? defaultLevelWidth;
 
   ///User defined unique identifier
-  final String? identifier;
+  String? identifier;
 
   ///Unique instance identifer
-  final String? iid;
+  String? iid;
 
   ///All levels from this world. The order of this array is only relevant in
   ///`LinearHorizontal` and `linearVertical` world layouts (see `worldLayout` value).
   ///Otherwise, you should refer to the `worldX`,`worldY` coordinates of each Level.
-  final List<Level>? levels;
+  List<Level>? levels;
 
   ///Height of the world grid in pixels.
-  final int? worldGridHeight;
+  int? worldGridHeight;
 
   ///Width of the world grid in pixels.
-  final int? worldGridWidth;
+  int? worldGridWidth;
 
   ///An enum that describes how levels are organized in this project (ie. linearly or in a 2D
   ///space). Possible values: `Free`, `GridVania`, `LinearHorizontal`, `LinearVertical`, `null`
-  final WorldLayout? worldLayout;
+  WorldLayout? worldLayout;
 
   factory World.fromRawJson(String str) => World.fromJson(json.decode(str));
 
