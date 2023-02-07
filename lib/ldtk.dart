@@ -7,8 +7,6 @@ import 'dart:convert';
 //
 //     final ldtk = ldtkFromJson(jsonString);
 
-import 'dart:convert';
-
 ///This file is a JSON schema of files created by LDtk level editor (https://ldtk.io).
 ///
 ///This is the root of any Project JSON file. It contains:  - the project settings, - an
@@ -51,7 +49,6 @@ class Ldtk {
     this.worldLayout,
     this.worlds,
   });
-
 
   ///This object is not actually used by LDtk. It ONLY exists to force explicit references to
   ///all types, to make sure QuickType finds them and integrate all of them. Otherwise,
@@ -201,78 +198,101 @@ class Ldtk {
   String toRawJson() => json.encode(toJson());
 
   factory Ldtk.fromJson(Map<String, dynamic> json) => Ldtk(
-    forcedRefs: json["__FORCED_REFS"] == null ? null : ForcedRefs.fromJson(json["__FORCED_REFS"]),
-    appBuildId: json["appBuildId"]?.toDouble(),
-    backupLimit: json["backupLimit"],
-    backupOnSave: json["backupOnSave"],
-    bgColor: json["bgColor"],
-    customCommands: json["customCommands"] == null ? [] : List<LdtkCustomCommand>.from(json["customCommands"]!.map((x) => LdtkCustomCommand.fromJson(x))),
-    defaultGridSize: json["defaultGridSize"],
-    defaultLevelBgColor: json["defaultLevelBgColor"],
-    defaultLevelHeight: json["defaultLevelHeight"],
-    defaultLevelWidth: json["defaultLevelWidth"],
-    defaultPivotX: json["defaultPivotX"]?.toDouble(),
-    defaultPivotY: json["defaultPivotY"]?.toDouble(),
-    defs: json["defs"] == null ? null : Definitions.fromJson(json["defs"]),
-    exportLevelBg: json["exportLevelBg"],
-    exportPng: json["exportPng"],
-    exportTiled: json["exportTiled"],
-    externalLevels: json["externalLevels"],
-    flags: json["flags"] == null ? [] : List<Flag>.from(json["flags"]!.map((x) => flagValues.map[x]!)),
-    identifierStyle: identifierStyleValues.map[json["identifierStyle"]],
-    iid: json["iid"],
-    imageExportMode: imageExportModeValues.map[json["imageExportMode"]],
-    jsonVersion: json["jsonVersion"],
-    levelNamePattern: json["levelNamePattern"],
-    levels: json["levels"] == null ? [] : List<Level>.from(json["levels"]!.map((x) => Level.fromJson(x))),
-    minifyJson: json["minifyJson"],
-    nextUid: json["nextUid"],
-    pngFilePattern: json["pngFilePattern"],
-    simplifiedExport: json["simplifiedExport"],
-    toc: json["toc"] == null ? [] : List<LdtkTableOfContentEntry>.from(json["toc"]!.map((x) => LdtkTableOfContentEntry.fromJson(x))),
-    tutorialDesc: json["tutorialDesc"],
-    worldGridHeight: json["worldGridHeight"],
-    worldGridWidth: json["worldGridWidth"],
-    worldLayout: worldLayoutValues.map[json["worldLayout"]],
-    worlds: json["worlds"] == null ? [] : List<World>.from(json["worlds"]!.map((x) => World.fromJson(x))),
-  );
+        forcedRefs: json["__FORCED_REFS"] == null
+            ? null
+            : ForcedRefs.fromJson(json["__FORCED_REFS"]),
+        appBuildId: json["appBuildId"]?.toDouble(),
+        backupLimit: json["backupLimit"],
+        backupOnSave: json["backupOnSave"],
+        bgColor: json["bgColor"],
+        customCommands: json["customCommands"] == null
+            ? []
+            : List<LdtkCustomCommand>.from(json["customCommands"]!
+                .map((x) => LdtkCustomCommand.fromJson(x))),
+        defaultGridSize: json["defaultGridSize"],
+        defaultLevelBgColor: json["defaultLevelBgColor"],
+        defaultLevelHeight: json["defaultLevelHeight"],
+        defaultLevelWidth: json["defaultLevelWidth"],
+        defaultPivotX: json["defaultPivotX"]?.toDouble(),
+        defaultPivotY: json["defaultPivotY"]?.toDouble(),
+        defs: json["defs"] == null ? null : Definitions.fromJson(json["defs"]),
+        exportLevelBg: json["exportLevelBg"],
+        exportPng: json["exportPng"],
+        exportTiled: json["exportTiled"],
+        externalLevels: json["externalLevels"],
+        flags: json["flags"] == null
+            ? []
+            : List<Flag>.from(json["flags"]!.map((x) => flagValues.map[x]!)),
+        identifierStyle: identifierStyleValues.map[json["identifierStyle"]],
+        iid: json["iid"],
+        imageExportMode: imageExportModeValues.map[json["imageExportMode"]],
+        jsonVersion: json["jsonVersion"],
+        levelNamePattern: json["levelNamePattern"],
+        levels: json["levels"] == null
+            ? []
+            : List<Level>.from(json["levels"]!.map((x) => Level.fromJson(x))),
+        minifyJson: json["minifyJson"],
+        nextUid: json["nextUid"],
+        pngFilePattern: json["pngFilePattern"],
+        simplifiedExport: json["simplifiedExport"],
+        toc: json["toc"] == null
+            ? []
+            : List<LdtkTableOfContentEntry>.from(
+                json["toc"]!.map((x) => LdtkTableOfContentEntry.fromJson(x))),
+        tutorialDesc: json["tutorialDesc"],
+        worldGridHeight: json["worldGridHeight"],
+        worldGridWidth: json["worldGridWidth"],
+        worldLayout: worldLayoutValues.map[json["worldLayout"]],
+        worlds: json["worlds"] == null
+            ? []
+            : List<World>.from(json["worlds"]!.map((x) => World.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "__FORCED_REFS": forcedRefs?.toJson(),
-    "appBuildId": appBuildId,
-    "backupLimit": backupLimit,
-    "backupOnSave": backupOnSave,
-    "bgColor": bgColor,
-    "customCommands": customCommands == null ? [] : List<dynamic>.from(customCommands!.map((x) => x.toJson())),
-    "defaultGridSize": defaultGridSize,
-    "defaultLevelBgColor": defaultLevelBgColor,
-    "defaultLevelHeight": defaultLevelHeight,
-    "defaultLevelWidth": defaultLevelWidth,
-    "defaultPivotX": defaultPivotX,
-    "defaultPivotY": defaultPivotY,
-    "defs": defs?.toJson(),
-    "exportLevelBg": exportLevelBg,
-    "exportPng": exportPng,
-    "exportTiled": exportTiled,
-    "externalLevels": externalLevels,
-    "flags": flags == null ? [] : List<dynamic>.from(flags!.map((x) => flagValues.reverse[x])),
-    "identifierStyle": identifierStyleValues.reverse[identifierStyle],
-    "iid": iid,
-    "imageExportMode": imageExportModeValues.reverse[imageExportMode],
-    "jsonVersion": jsonVersion,
-    "levelNamePattern": levelNamePattern,
-    "levels": levels == null ? [] : List<dynamic>.from(levels!.map((x) => x.toJson())),
-    "minifyJson": minifyJson,
-    "nextUid": nextUid,
-    "pngFilePattern": pngFilePattern,
-    "simplifiedExport": simplifiedExport,
-    "toc": toc == null ? [] : List<dynamic>.from(toc!.map((x) => x.toJson())),
-    "tutorialDesc": tutorialDesc,
-    "worldGridHeight": worldGridHeight,
-    "worldGridWidth": worldGridWidth,
-    "worldLayout": worldLayoutValues.reverse[worldLayout],
-    "worlds": worlds == null ? [] : List<dynamic>.from(worlds!.map((x) => x.toJson())),
-  };
+        "__FORCED_REFS": forcedRefs?.toJson(),
+        "appBuildId": appBuildId,
+        "backupLimit": backupLimit,
+        "backupOnSave": backupOnSave,
+        "bgColor": bgColor,
+        "customCommands": customCommands == null
+            ? []
+            : List<dynamic>.from(customCommands!.map((x) => x.toJson())),
+        "defaultGridSize": defaultGridSize,
+        "defaultLevelBgColor": defaultLevelBgColor,
+        "defaultLevelHeight": defaultLevelHeight,
+        "defaultLevelWidth": defaultLevelWidth,
+        "defaultPivotX": defaultPivotX,
+        "defaultPivotY": defaultPivotY,
+        "defs": defs?.toJson(),
+        "exportLevelBg": exportLevelBg,
+        "exportPng": exportPng,
+        "exportTiled": exportTiled,
+        "externalLevels": externalLevels,
+        "flags": flags == null
+            ? []
+            : List<dynamic>.from(flags!.map((x) => flagValues.reverse[x])),
+        "identifierStyle": identifierStyleValues.reverse[identifierStyle],
+        "iid": iid,
+        "imageExportMode": imageExportModeValues.reverse[imageExportMode],
+        "jsonVersion": jsonVersion,
+        "levelNamePattern": levelNamePattern,
+        "levels": levels == null
+            ? []
+            : List<dynamic>.from(levels!.map((x) => x.toJson())),
+        "minifyJson": minifyJson,
+        "nextUid": nextUid,
+        "pngFilePattern": pngFilePattern,
+        "simplifiedExport": simplifiedExport,
+        "toc":
+            toc == null ? [] : List<dynamic>.from(toc!.map((x) => x.toJson())),
+        "tutorialDesc": tutorialDesc,
+        "worldGridHeight": worldGridHeight,
+        "worldGridWidth": worldGridWidth,
+        "worldLayout": worldLayoutValues.reverse[worldLayout],
+        "worlds": worlds == null
+            ? []
+            : List<dynamic>.from(worlds!.map((x) => x.toJson())),
+      };
 }
 
 class LdtkCustomCommand {
@@ -286,21 +306,22 @@ class LdtkCustomCommand {
   ///Possible values: `Manual`, `AfterLoad`, `BeforeSave`, `AfterSave`
   When? when;
 
-  factory LdtkCustomCommand.fromRawJson(String str) => LdtkCustomCommand.fromJson(json.decode(str));
+  factory LdtkCustomCommand.fromRawJson(String str) =>
+      LdtkCustomCommand.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory LdtkCustomCommand.fromJson(Map<String, dynamic> json) => LdtkCustomCommand(
-    command: json["command"],
-    when: whenValues.map[json["when"]],
-  );
+  factory LdtkCustomCommand.fromJson(Map<String, dynamic> json) =>
+      LdtkCustomCommand(
+        command: json["command"],
+        when: whenValues.map[json["when"]],
+      );
 
   Map<String, dynamic> toJson() => {
-    "command": command,
-    "when": whenValues.reverse[when],
-  };
+        "command": command,
+        "when": whenValues.reverse[when],
+      };
 }
-
 
 ///Possible values: `Manual`, `AfterLoad`, `BeforeSave`, `AfterSave`
 enum When { MANUAL, AFTER_LOAD, BEFORE_SAVE, AFTER_SAVE }
@@ -311,7 +332,6 @@ final whenValues = EnumValues({
   "BeforeSave": When.BEFORE_SAVE,
   "Manual": When.MANUAL
 });
-
 
 ///If you're writing your own LDtk importer, you should probably just ignore *most* stuff in
 ///the `defs` section, as it contains data that are mostly important to the editor. To keep
@@ -330,7 +350,6 @@ class Definitions {
     this.levelFields,
     this.tilesets,
   });
-
 
   ///All entities definitions, including their custom fields
   List<EntityDefinition>? entities;
@@ -351,27 +370,58 @@ class Definitions {
   ///All tilesets
   List<TilesetDefinition>? tilesets;
 
-  factory Definitions.fromRawJson(String str) => Definitions.fromJson(json.decode(str));
+  factory Definitions.fromRawJson(String str) =>
+      Definitions.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory Definitions.fromJson(Map<String, dynamic> json) => Definitions(
-    entities: json["entities"] == null ? [] : List<EntityDefinition>.from(json["entities"]!.map((x) => EntityDefinition.fromJson(x))),
-    enums: json["enums"] == null ? [] : List<EnumDefinition>.from(json["enums"]!.map((x) => EnumDefinition.fromJson(x))),
-    externalEnums: json["externalEnums"] == null ? [] : List<EnumDefinition>.from(json["externalEnums"]!.map((x) => EnumDefinition.fromJson(x))),
-    layers: json["layers"] == null ? [] : List<LayerDefinition>.from(json["layers"]!.map((x) => LayerDefinition.fromJson(x))),
-    levelFields: json["levelFields"] == null ? [] : List<FieldDefinition>.from(json["levelFields"]!.map((x) => FieldDefinition.fromJson(x))),
-    tilesets: json["tilesets"] == null ? [] : List<TilesetDefinition>.from(json["tilesets"]!.map((x) => TilesetDefinition.fromJson(x))),
-  );
+        entities: json["entities"] == null
+            ? []
+            : List<EntityDefinition>.from(
+                json["entities"]!.map((x) => EntityDefinition.fromJson(x))),
+        enums: json["enums"] == null
+            ? []
+            : List<EnumDefinition>.from(
+                json["enums"]!.map((x) => EnumDefinition.fromJson(x))),
+        externalEnums: json["externalEnums"] == null
+            ? []
+            : List<EnumDefinition>.from(
+                json["externalEnums"]!.map((x) => EnumDefinition.fromJson(x))),
+        layers: json["layers"] == null
+            ? []
+            : List<LayerDefinition>.from(
+                json["layers"]!.map((x) => LayerDefinition.fromJson(x))),
+        levelFields: json["levelFields"] == null
+            ? []
+            : List<FieldDefinition>.from(
+                json["levelFields"]!.map((x) => FieldDefinition.fromJson(x))),
+        tilesets: json["tilesets"] == null
+            ? []
+            : List<TilesetDefinition>.from(
+                json["tilesets"]!.map((x) => TilesetDefinition.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "entities": entities == null ? [] : List<dynamic>.from(entities!.map((x) => x.toJson())),
-    "enums": enums == null ? [] : List<dynamic>.from(enums!.map((x) => x.toJson())),
-    "externalEnums": externalEnums == null ? [] : List<dynamic>.from(externalEnums!.map((x) => x.toJson())),
-    "layers": layers == null ? [] : List<dynamic>.from(layers!.map((x) => x.toJson())),
-    "levelFields": levelFields == null ? [] : List<dynamic>.from(levelFields!.map((x) => x.toJson())),
-    "tilesets": tilesets == null ? [] : List<dynamic>.from(tilesets!.map((x) => x.toJson())),
-  };
+        "entities": entities == null
+            ? []
+            : List<dynamic>.from(entities!.map((x) => x.toJson())),
+        "enums": enums == null
+            ? []
+            : List<dynamic>.from(enums!.map((x) => x.toJson())),
+        "externalEnums": externalEnums == null
+            ? []
+            : List<dynamic>.from(externalEnums!.map((x) => x.toJson())),
+        "layers": layers == null
+            ? []
+            : List<dynamic>.from(layers!.map((x) => x.toJson())),
+        "levelFields": levelFields == null
+            ? []
+            : List<dynamic>.from(levelFields!.map((x) => x.toJson())),
+        "tilesets": tilesets == null
+            ? []
+            : List<dynamic>.from(tilesets!.map((x) => x.toJson())),
+      };
 }
 
 class EntityDefinition {
@@ -405,7 +455,6 @@ class EntityDefinition {
     this.uid,
     this.width,
   });
-
 
   ///Base entity color
   String? color;
@@ -491,73 +540,87 @@ class EntityDefinition {
   ///Pixel width
   int? width;
 
-  factory EntityDefinition.fromRawJson(String str) => EntityDefinition.fromJson(json.decode(str));
+  factory EntityDefinition.fromRawJson(String str) =>
+      EntityDefinition.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory EntityDefinition.fromJson(Map<String, dynamic> json) => EntityDefinition(
-    color: json["color"],
-    doc: json["doc"],
-    exportToToc: json["exportToToc"],
-    fieldDefs: json["fieldDefs"] == null ? [] : List<FieldDefinition>.from(json["fieldDefs"]!.map((x) => FieldDefinition.fromJson(x))),
-    fillOpacity: json["fillOpacity"]?.toDouble(),
-    height: json["height"],
-    hollow: json["hollow"],
-    identifier: json["identifier"],
-    keepAspectRatio: json["keepAspectRatio"],
-    limitBehavior: limitBehaviorValues.map[json["limitBehavior"]],
-    limitScope: limitScopeValues.map[json["limitScope"]],
-    lineOpacity: json["lineOpacity"]?.toDouble(),
-    maxCount: json["maxCount"],
-    nineSliceBorders: json["nineSliceBorders"] == null ? [] : List<int>.from(json["nineSliceBorders"]!.map((x) => x)),
-    pivotX: json["pivotX"]?.toDouble(),
-    pivotY: json["pivotY"]?.toDouble(),
-    renderMode: renderModeValues.map[json["renderMode"]],
-    resizableX: json["resizableX"],
-    resizableY: json["resizableY"],
-    showName: json["showName"],
-    tags: json["tags"] == null ? [] : List<String>.from(json["tags"]!.map((x) => x)),
-    tileId: json["tileId"],
-    tileOpacity: json["tileOpacity"]?.toDouble(),
-    tileRect: json["tileRect"] == null ? null : TilesetRectangle.fromJson(json["tileRect"]),
-    tileRenderMode: tileRenderModeValues.map[json["tileRenderMode"]],
-    tilesetId: json["tilesetId"],
-    uid: json["uid"],
-    width: json["width"],
-  );
+  factory EntityDefinition.fromJson(Map<String, dynamic> json) =>
+      EntityDefinition(
+        color: json["color"],
+        doc: json["doc"],
+        exportToToc: json["exportToToc"],
+        fieldDefs: json["fieldDefs"] == null
+            ? []
+            : List<FieldDefinition>.from(
+                json["fieldDefs"]!.map((x) => FieldDefinition.fromJson(x))),
+        fillOpacity: json["fillOpacity"]?.toDouble(),
+        height: json["height"],
+        hollow: json["hollow"],
+        identifier: json["identifier"],
+        keepAspectRatio: json["keepAspectRatio"],
+        limitBehavior: limitBehaviorValues.map[json["limitBehavior"]],
+        limitScope: limitScopeValues.map[json["limitScope"]],
+        lineOpacity: json["lineOpacity"]?.toDouble(),
+        maxCount: json["maxCount"],
+        nineSliceBorders: json["nineSliceBorders"] == null
+            ? []
+            : List<int>.from(json["nineSliceBorders"]!.map((x) => x)),
+        pivotX: json["pivotX"]?.toDouble(),
+        pivotY: json["pivotY"]?.toDouble(),
+        renderMode: renderModeValues.map[json["renderMode"]],
+        resizableX: json["resizableX"],
+        resizableY: json["resizableY"],
+        showName: json["showName"],
+        tags: json["tags"] == null
+            ? []
+            : List<String>.from(json["tags"]!.map((x) => x)),
+        tileId: json["tileId"],
+        tileOpacity: json["tileOpacity"]?.toDouble(),
+        tileRect: json["tileRect"] == null
+            ? null
+            : TilesetRectangle.fromJson(json["tileRect"]),
+        tileRenderMode: tileRenderModeValues.map[json["tileRenderMode"]],
+        tilesetId: json["tilesetId"],
+        uid: json["uid"],
+        width: json["width"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "color": color,
-    "doc": doc,
-    "exportToToc": exportToToc,
-    "fieldDefs": fieldDefs == null ? [] : List<dynamic>.from(fieldDefs!.map((x) => x.toJson())),
-    "fillOpacity": fillOpacity,
-    "height": height,
-    "hollow": hollow,
-    "identifier": identifier,
-    "keepAspectRatio": keepAspectRatio,
-    "limitBehavior": limitBehaviorValues.reverse[limitBehavior],
-    "limitScope": limitScopeValues.reverse[limitScope],
-    "lineOpacity": lineOpacity,
-    "maxCount": maxCount,
-    "nineSliceBorders": nineSliceBorders == null ? [] : List<dynamic>.from(nineSliceBorders!.map((x) => x)),
-    "pivotX": pivotX,
-    "pivotY": pivotY,
-    "renderMode": renderModeValues.reverse[renderMode],
-    "resizableX": resizableX,
-    "resizableY": resizableY,
-    "showName": showName,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-    "tileId": tileId,
-    "tileOpacity": tileOpacity,
-    "tileRect": tileRect?.toJson(),
-    "tileRenderMode": tileRenderModeValues.reverse[tileRenderMode],
-    "tilesetId": tilesetId,
-    "uid": uid,
-    "width": width,
-  };
+        "color": color,
+        "doc": doc,
+        "exportToToc": exportToToc,
+        "fieldDefs": fieldDefs == null
+            ? []
+            : List<dynamic>.from(fieldDefs!.map((x) => x.toJson())),
+        "fillOpacity": fillOpacity,
+        "height": height,
+        "hollow": hollow,
+        "identifier": identifier,
+        "keepAspectRatio": keepAspectRatio,
+        "limitBehavior": limitBehaviorValues.reverse[limitBehavior],
+        "limitScope": limitScopeValues.reverse[limitScope],
+        "lineOpacity": lineOpacity,
+        "maxCount": maxCount,
+        "nineSliceBorders": nineSliceBorders == null
+            ? []
+            : List<dynamic>.from(nineSliceBorders!.map((x) => x)),
+        "pivotX": pivotX,
+        "pivotY": pivotY,
+        "renderMode": renderModeValues.reverse[renderMode],
+        "resizableX": resizableX,
+        "resizableY": resizableY,
+        "showName": showName,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
+        "tileId": tileId,
+        "tileOpacity": tileOpacity,
+        "tileRect": tileRect?.toJson(),
+        "tileRenderMode": tileRenderModeValues.reverse[tileRenderMode],
+        "tilesetId": tilesetId,
+        "uid": uid,
+        "width": width,
+      };
 }
-
 
 ///This section is mostly only intended for the LDtk editor app itself. You can safely
 ///ignore it.
@@ -594,7 +657,6 @@ class FieldDefinition {
     this.uid,
     this.useForSmartColor,
   });
-
 
   ///Human readable value type. Possible values: `Int, Float, String, Bool, Color,
   ///ExternEnum.XXX, LocalEnum.XXX, Point, FilePath`.<br/>  If the field is an array, this
@@ -683,77 +745,87 @@ class FieldDefinition {
   ///values.
   bool? useForSmartColor;
 
-  factory FieldDefinition.fromRawJson(String str) => FieldDefinition.fromJson(json.decode(str));
+  factory FieldDefinition.fromRawJson(String str) =>
+      FieldDefinition.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory FieldDefinition.fromJson(Map<String, dynamic> json) => FieldDefinition(
-    type: json["__type"],
-    acceptFileTypes: json["acceptFileTypes"] == null ? [] : List<String>.from(json["acceptFileTypes"]!.map((x) => x)),
-    allowedRefs: allowedRefsValues.map[json["allowedRefs"]],
-    allowedRefTags: json["allowedRefTags"] == null ? [] : List<String>.from(json["allowedRefTags"]!.map((x) => x)),
-    allowOutOfLevelRef: json["allowOutOfLevelRef"],
-    arrayMaxLength: json["arrayMaxLength"],
-    arrayMinLength: json["arrayMinLength"],
-    autoChainRef: json["autoChainRef"],
-    canBeNull: json["canBeNull"],
-    defaultOverride: json["defaultOverride"],
-    doc: json["doc"],
-    editorAlwaysShow: json["editorAlwaysShow"],
-    editorCutLongValues: json["editorCutLongValues"],
-    editorDisplayMode: editorDisplayModeValues.map[json["editorDisplayMode"]],
-    editorDisplayPos: editorDisplayPosValues.map[json["editorDisplayPos"]],
-    editorLinkStyle: editorLinkStyleValues.map[json["editorLinkStyle"]],
-    editorShowInWorld: json["editorShowInWorld"],
-    editorTextPrefix: json["editorTextPrefix"],
-    editorTextSuffix: json["editorTextSuffix"],
-    identifier: json["identifier"],
-    isArray: json["isArray"],
-    max: json["max"]?.toDouble(),
-    min: json["min"]?.toDouble(),
-    regex: json["regex"],
-    symmetricalRef: json["symmetricalRef"],
-    textLanguageMode: textLanguageModeValues.map[json["textLanguageMode"]],
-    tilesetUid: json["tilesetUid"],
-    fieldDefinitionType: json["type"],
-    uid: json["uid"],
-    useForSmartColor: json["useForSmartColor"],
-  );
+  factory FieldDefinition.fromJson(Map<String, dynamic> json) =>
+      FieldDefinition(
+        type: json["__type"],
+        acceptFileTypes: json["acceptFileTypes"] == null
+            ? []
+            : List<String>.from(json["acceptFileTypes"]!.map((x) => x)),
+        allowedRefs: allowedRefsValues.map[json["allowedRefs"]],
+        allowedRefTags: json["allowedRefTags"] == null
+            ? []
+            : List<String>.from(json["allowedRefTags"]!.map((x) => x)),
+        allowOutOfLevelRef: json["allowOutOfLevelRef"],
+        arrayMaxLength: json["arrayMaxLength"],
+        arrayMinLength: json["arrayMinLength"],
+        autoChainRef: json["autoChainRef"],
+        canBeNull: json["canBeNull"],
+        defaultOverride: json["defaultOverride"],
+        doc: json["doc"],
+        editorAlwaysShow: json["editorAlwaysShow"],
+        editorCutLongValues: json["editorCutLongValues"],
+        editorDisplayMode:
+            editorDisplayModeValues.map[json["editorDisplayMode"]],
+        editorDisplayPos: editorDisplayPosValues.map[json["editorDisplayPos"]],
+        editorLinkStyle: editorLinkStyleValues.map[json["editorLinkStyle"]],
+        editorShowInWorld: json["editorShowInWorld"],
+        editorTextPrefix: json["editorTextPrefix"],
+        editorTextSuffix: json["editorTextSuffix"],
+        identifier: json["identifier"],
+        isArray: json["isArray"],
+        max: json["max"]?.toDouble(),
+        min: json["min"]?.toDouble(),
+        regex: json["regex"],
+        symmetricalRef: json["symmetricalRef"],
+        textLanguageMode: textLanguageModeValues.map[json["textLanguageMode"]],
+        tilesetUid: json["tilesetUid"],
+        fieldDefinitionType: json["type"],
+        uid: json["uid"],
+        useForSmartColor: json["useForSmartColor"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "__type": type,
-    "acceptFileTypes": acceptFileTypes == null ? [] : List<dynamic>.from(acceptFileTypes!.map((x) => x)),
-    "allowedRefs": allowedRefsValues.reverse[allowedRefs],
-    "allowedRefTags": allowedRefTags == null ? [] : List<dynamic>.from(allowedRefTags!.map((x) => x)),
-    "allowOutOfLevelRef": allowOutOfLevelRef,
-    "arrayMaxLength": arrayMaxLength,
-    "arrayMinLength": arrayMinLength,
-    "autoChainRef": autoChainRef,
-    "canBeNull": canBeNull,
-    "defaultOverride": defaultOverride,
-    "doc": doc,
-    "editorAlwaysShow": editorAlwaysShow,
-    "editorCutLongValues": editorCutLongValues,
-    "editorDisplayMode": editorDisplayModeValues.reverse[editorDisplayMode],
-    "editorDisplayPos": editorDisplayPosValues.reverse[editorDisplayPos],
-    "editorLinkStyle": editorLinkStyleValues.reverse[editorLinkStyle],
-    "editorShowInWorld": editorShowInWorld,
-    "editorTextPrefix": editorTextPrefix,
-    "editorTextSuffix": editorTextSuffix,
-    "identifier": identifier,
-    "isArray": isArray,
-    "max": max,
-    "min": min,
-    "regex": regex,
-    "symmetricalRef": symmetricalRef,
-    "textLanguageMode": textLanguageModeValues.reverse[textLanguageMode],
-    "tilesetUid": tilesetUid,
-    "type": fieldDefinitionType,
-    "uid": uid,
-    "useForSmartColor": useForSmartColor,
-  };
+        "__type": type,
+        "acceptFileTypes": acceptFileTypes == null
+            ? []
+            : List<dynamic>.from(acceptFileTypes!.map((x) => x)),
+        "allowedRefs": allowedRefsValues.reverse[allowedRefs],
+        "allowedRefTags": allowedRefTags == null
+            ? []
+            : List<dynamic>.from(allowedRefTags!.map((x) => x)),
+        "allowOutOfLevelRef": allowOutOfLevelRef,
+        "arrayMaxLength": arrayMaxLength,
+        "arrayMinLength": arrayMinLength,
+        "autoChainRef": autoChainRef,
+        "canBeNull": canBeNull,
+        "defaultOverride": defaultOverride,
+        "doc": doc,
+        "editorAlwaysShow": editorAlwaysShow,
+        "editorCutLongValues": editorCutLongValues,
+        "editorDisplayMode": editorDisplayModeValues.reverse[editorDisplayMode],
+        "editorDisplayPos": editorDisplayPosValues.reverse[editorDisplayPos],
+        "editorLinkStyle": editorLinkStyleValues.reverse[editorLinkStyle],
+        "editorShowInWorld": editorShowInWorld,
+        "editorTextPrefix": editorTextPrefix,
+        "editorTextSuffix": editorTextSuffix,
+        "identifier": identifier,
+        "isArray": isArray,
+        "max": max,
+        "min": min,
+        "regex": regex,
+        "symmetricalRef": symmetricalRef,
+        "textLanguageMode": textLanguageModeValues.reverse[textLanguageMode],
+        "tilesetUid": tilesetUid,
+        "type": fieldDefinitionType,
+        "uid": uid,
+        "useForSmartColor": useForSmartColor,
+      };
 }
-
 
 ///Possible values: `Any`, `OnlySame`, `OnlyTags`
 enum AllowedRefs { ANY, ONLY_SAME, ONLY_TAGS }
@@ -764,12 +836,26 @@ final allowedRefsValues = EnumValues({
   "OnlyTags": AllowedRefs.ONLY_TAGS
 });
 
-
 ///Possible values: `Hidden`, `ValueOnly`, `NameAndValue`, `EntityTile`, `Points`,
 ///`PointStar`, `PointPath`, `PointPathLoop`, `RadiusPx`, `RadiusGrid`,
 ///`ArrayCountWithLabel`, `ArrayCountNoLabel`, `RefLinkBetweenPivots`,
 ///`RefLinkBetweenCenters`
-enum EditorDisplayMode { HIDDEN, VALUE_ONLY, NAME_AND_VALUE, ENTITY_TILE, POINTS, POINT_STAR, POINT_PATH, POINT_PATH_LOOP, RADIUS_PX, RADIUS_GRID, ARRAY_COUNT_WITH_LABEL, ARRAY_COUNT_NO_LABEL, REF_LINK_BETWEEN_PIVOTS, REF_LINK_BETWEEN_CENTERS }
+enum EditorDisplayMode {
+  HIDDEN,
+  VALUE_ONLY,
+  NAME_AND_VALUE,
+  ENTITY_TILE,
+  POINTS,
+  POINT_STAR,
+  POINT_PATH,
+  POINT_PATH_LOOP,
+  RADIUS_PX,
+  RADIUS_GRID,
+  ARRAY_COUNT_WITH_LABEL,
+  ARRAY_COUNT_NO_LABEL,
+  REF_LINK_BETWEEN_PIVOTS,
+  REF_LINK_BETWEEN_CENTERS
+}
 
 final editorDisplayModeValues = EnumValues({
   "ArrayCountNoLabel": EditorDisplayMode.ARRAY_COUNT_NO_LABEL,
@@ -788,7 +874,6 @@ final editorDisplayModeValues = EnumValues({
   "ValueOnly": EditorDisplayMode.VALUE_ONLY
 });
 
-
 ///Possible values: `Above`, `Center`, `Beneath`
 enum EditorDisplayPos { ABOVE, CENTER, BENEATH }
 
@@ -798,9 +883,14 @@ final editorDisplayPosValues = EnumValues({
   "Center": EditorDisplayPos.CENTER
 });
 
-
 ///Possible values: `ZigZag`, `StraightArrow`, `CurvedArrow`, `ArrowsLine`, `DashedLine`
-enum EditorLinkStyle { ZIG_ZAG, STRAIGHT_ARROW, CURVED_ARROW, ARROWS_LINE, DASHED_LINE }
+enum EditorLinkStyle {
+  ZIG_ZAG,
+  STRAIGHT_ARROW,
+  CURVED_ARROW,
+  ARROWS_LINE,
+  DASHED_LINE
+}
 
 final editorLinkStyleValues = EnumValues({
   "ArrowsLine": EditorLinkStyle.ARROWS_LINE,
@@ -810,7 +900,18 @@ final editorLinkStyleValues = EnumValues({
   "ZigZag": EditorLinkStyle.ZIG_ZAG
 });
 
-enum TextLanguageMode { LANG_PYTHON, LANG_RUBY, LANG_JS, LANG_LUA, LANG_C, LANG_HAXE, LANG_MARKDOWN, LANG_JSON, LANG_XML, LANG_LOG }
+enum TextLanguageMode {
+  LANG_PYTHON,
+  LANG_RUBY,
+  LANG_JS,
+  LANG_LUA,
+  LANG_C,
+  LANG_HAXE,
+  LANG_MARKDOWN,
+  LANG_JSON,
+  LANG_XML,
+  LANG_LOG
+}
 
 final textLanguageModeValues = EnumValues({
   "LangC": TextLanguageMode.LANG_C,
@@ -825,7 +926,6 @@ final textLanguageModeValues = EnumValues({
   "LangXml": TextLanguageMode.LANG_XML
 });
 
-
 ///Possible values: `DiscardOldOnes`, `PreventAdding`, `MoveLastOne`
 enum LimitBehavior { DISCARD_OLD_ONES, PREVENT_ADDING, MOVE_LAST_ONE }
 
@@ -834,7 +934,6 @@ final limitBehaviorValues = EnumValues({
   "MoveLastOne": LimitBehavior.MOVE_LAST_ONE,
   "PreventAdding": LimitBehavior.PREVENT_ADDING
 });
-
 
 ///If TRUE, the maxCount is a "per world" limit, if FALSE, it's a "per level". Possible
 ///values: `PerLayer`, `PerLevel`, `PerWorld`
@@ -846,7 +945,6 @@ final limitScopeValues = EnumValues({
   "PerWorld": LimitScope.PER_WORLD
 });
 
-
 ///Possible values: `Rectangle`, `Ellipse`, `Tile`, `Cross`
 enum RenderMode { RECTANGLE, ELLIPSE, TILE, CROSS }
 
@@ -857,7 +955,6 @@ final renderModeValues = EnumValues({
   "Tile": RenderMode.TILE
 });
 
-
 ///This object represents a custom sub rectangle in a Tileset image.
 class TilesetRectangle {
   TilesetRectangle({
@@ -867,7 +964,6 @@ class TilesetRectangle {
     this.x,
     this.y,
   });
-
 
   ///Height in pixels
   int? h;
@@ -884,32 +980,41 @@ class TilesetRectangle {
   ///Y pixels coordinate of the top-left corner in the Tileset image
   int? y;
 
-  factory TilesetRectangle.fromRawJson(String str) => TilesetRectangle.fromJson(json.decode(str));
+  factory TilesetRectangle.fromRawJson(String str) =>
+      TilesetRectangle.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory TilesetRectangle.fromJson(Map<String, dynamic> json) => TilesetRectangle(
-    h: json["h"],
-    tilesetUid: json["tilesetUid"],
-    w: json["w"],
-    x: json["x"],
-    y: json["y"],
-  );
+  factory TilesetRectangle.fromJson(Map<String, dynamic> json) =>
+      TilesetRectangle(
+        h: json["h"],
+        tilesetUid: json["tilesetUid"],
+        w: json["w"],
+        x: json["x"],
+        y: json["y"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "h": h,
-    "tilesetUid": tilesetUid,
-    "w": w,
-    "x": x,
-    "y": y,
-  };
+        "h": h,
+        "tilesetUid": tilesetUid,
+        "w": w,
+        "x": x,
+        "y": y,
+      };
 }
-
 
 ///An enum describing how the the Entity tile is rendered inside the Entity bounds. Possible
 ///values: `Cover`, `FitInside`, `Repeat`, `Stretch`, `FullSizeCropped`,
 ///`FullSizeUncropped`, `NineSlice`
-enum TileRenderMode { COVER, FIT_INSIDE, REPEAT, STRETCH, FULL_SIZE_CROPPED, FULL_SIZE_UNCROPPED, NINE_SLICE }
+enum TileRenderMode {
+  COVER,
+  FIT_INSIDE,
+  REPEAT,
+  STRETCH,
+  FULL_SIZE_CROPPED,
+  FULL_SIZE_UNCROPPED,
+  NINE_SLICE
+}
 
 final tileRenderModeValues = EnumValues({
   "Cover": TileRenderMode.COVER,
@@ -952,29 +1057,37 @@ class EnumDefinition {
   ///All possible enum values, with their optional Tile infos.
   List<EnumValueDefinition>? values;
 
-  factory EnumDefinition.fromRawJson(String str) => EnumDefinition.fromJson(json.decode(str));
+  factory EnumDefinition.fromRawJson(String str) =>
+      EnumDefinition.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory EnumDefinition.fromJson(Map<String, dynamic> json) => EnumDefinition(
-    externalFileChecksum: json["externalFileChecksum"],
-    externalRelPath: json["externalRelPath"],
-    iconTilesetUid: json["iconTilesetUid"],
-    identifier: json["identifier"],
-    tags: json["tags"] == null ? [] : List<String>.from(json["tags"]!.map((x) => x)),
-    uid: json["uid"],
-    values: json["values"] == null ? [] : List<EnumValueDefinition>.from(json["values"]!.map((x) => EnumValueDefinition.fromJson(x))),
-  );
+        externalFileChecksum: json["externalFileChecksum"],
+        externalRelPath: json["externalRelPath"],
+        iconTilesetUid: json["iconTilesetUid"],
+        identifier: json["identifier"],
+        tags: json["tags"] == null
+            ? []
+            : List<String>.from(json["tags"]!.map((x) => x)),
+        uid: json["uid"],
+        values: json["values"] == null
+            ? []
+            : List<EnumValueDefinition>.from(
+                json["values"]!.map((x) => EnumValueDefinition.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "externalFileChecksum": externalFileChecksum,
-    "externalRelPath": externalRelPath,
-    "iconTilesetUid": iconTilesetUid,
-    "identifier": identifier,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-    "uid": uid,
-    "values": values == null ? [] : List<dynamic>.from(values!.map((x) => x.toJson())),
-  };
+        "externalFileChecksum": externalFileChecksum,
+        "externalRelPath": externalRelPath,
+        "iconTilesetUid": iconTilesetUid,
+        "identifier": identifier,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
+        "uid": uid,
+        "values": values == null
+            ? []
+            : List<dynamic>.from(values!.map((x) => x.toJson())),
+      };
 }
 
 class EnumValueDefinition {
@@ -984,7 +1097,6 @@ class EnumValueDefinition {
     this.id,
     this.tileId,
   });
-
 
   ///An array of 4 Int values that refers to the tile in the tileset image: `[ x, y, width,
   ///height ]`
@@ -999,23 +1111,29 @@ class EnumValueDefinition {
   ///The optional ID of the tile
   int? tileId;
 
-  factory EnumValueDefinition.fromRawJson(String str) => EnumValueDefinition.fromJson(json.decode(str));
+  factory EnumValueDefinition.fromRawJson(String str) =>
+      EnumValueDefinition.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory EnumValueDefinition.fromJson(Map<String, dynamic> json) => EnumValueDefinition(
-    tileSrcRect: json["__tileSrcRect"] == null ? [] : List<int>.from(json["__tileSrcRect"]!.map((x) => x)),
-    color: json["color"],
-    id: json["id"],
-    tileId: json["tileId"],
-  );
+  factory EnumValueDefinition.fromJson(Map<String, dynamic> json) =>
+      EnumValueDefinition(
+        tileSrcRect: json["__tileSrcRect"] == null
+            ? []
+            : List<int>.from(json["__tileSrcRect"]!.map((x) => x)),
+        color: json["color"],
+        id: json["id"],
+        tileId: json["tileId"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "__tileSrcRect": tileSrcRect == null ? [] : List<dynamic>.from(tileSrcRect!.map((x) => x)),
-    "color": color,
-    "id": id,
-    "tileId": tileId,
-  };
+        "__tileSrcRect": tileSrcRect == null
+            ? []
+            : List<dynamic>.from(tileSrcRect!.map((x) => x)),
+        "color": color,
+        "id": id,
+        "tileId": tileId,
+      };
 }
 
 class LayerDefinition {
@@ -1048,7 +1166,6 @@ class LayerDefinition {
     this.layerDefinitionType,
     this.uid,
   });
-
 
   ///Type of the layer (*IntGrid, Entities, Tiles or AutoLayer*)
   String? type;
@@ -1140,69 +1257,89 @@ class LayerDefinition {
   ///Unique Int identifier
   int? uid;
 
-  factory LayerDefinition.fromRawJson(String str) => LayerDefinition.fromJson(json.decode(str));
+  factory LayerDefinition.fromRawJson(String str) =>
+      LayerDefinition.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory LayerDefinition.fromJson(Map<String, dynamic> json) => LayerDefinition(
-    type: json["__type"],
-    autoRuleGroups: json["autoRuleGroups"] == null ? [] : List<AutoLayerRuleGroup>.from(json["autoRuleGroups"]!.map((x) => AutoLayerRuleGroup.fromJson(x))),
-    autoSourceLayerDefUid: json["autoSourceLayerDefUid"],
-    autoTilesetDefUid: json["autoTilesetDefUid"],
-    canSelectWhenInactive: json["canSelectWhenInactive"],
-    displayOpacity: json["displayOpacity"]?.toDouble(),
-    doc: json["doc"],
-    excludedTags: json["excludedTags"] == null ? [] : List<String>.from(json["excludedTags"]!.map((x) => x)),
-    gridSize: json["gridSize"],
-    guideGridHei: json["guideGridHei"],
-    guideGridWid: json["guideGridWid"],
-    hideFieldsWhenInactive: json["hideFieldsWhenInactive"],
-    hideInList: json["hideInList"],
-    identifier: json["identifier"],
-    inactiveOpacity: json["inactiveOpacity"]?.toDouble(),
-    intGridValues: json["intGridValues"] == null ? [] : List<IntGridValueDefinition>.from(json["intGridValues"]!.map((x) => IntGridValueDefinition.fromJson(x))),
-    parallaxFactorX: json["parallaxFactorX"]?.toDouble(),
-    parallaxFactorY: json["parallaxFactorY"]?.toDouble(),
-    parallaxScaling: json["parallaxScaling"],
-    pxOffsetX: json["pxOffsetX"],
-    pxOffsetY: json["pxOffsetY"],
-    requiredTags: json["requiredTags"] == null ? [] : List<String>.from(json["requiredTags"]!.map((x) => x)),
-    tilePivotX: json["tilePivotX"]?.toDouble(),
-    tilePivotY: json["tilePivotY"]?.toDouble(),
-    tilesetDefUid: json["tilesetDefUid"],
-    layerDefinitionType: typeValues.map[json["type"]],
-    uid: json["uid"],
-  );
+  factory LayerDefinition.fromJson(Map<String, dynamic> json) =>
+      LayerDefinition(
+        type: json["__type"],
+        autoRuleGroups: json["autoRuleGroups"] == null
+            ? []
+            : List<AutoLayerRuleGroup>.from(json["autoRuleGroups"]!
+                .map((x) => AutoLayerRuleGroup.fromJson(x))),
+        autoSourceLayerDefUid: json["autoSourceLayerDefUid"],
+        autoTilesetDefUid: json["autoTilesetDefUid"],
+        canSelectWhenInactive: json["canSelectWhenInactive"],
+        displayOpacity: json["displayOpacity"]?.toDouble(),
+        doc: json["doc"],
+        excludedTags: json["excludedTags"] == null
+            ? []
+            : List<String>.from(json["excludedTags"]!.map((x) => x)),
+        gridSize: json["gridSize"],
+        guideGridHei: json["guideGridHei"],
+        guideGridWid: json["guideGridWid"],
+        hideFieldsWhenInactive: json["hideFieldsWhenInactive"],
+        hideInList: json["hideInList"],
+        identifier: json["identifier"],
+        inactiveOpacity: json["inactiveOpacity"]?.toDouble(),
+        intGridValues: json["intGridValues"] == null
+            ? []
+            : List<IntGridValueDefinition>.from(json["intGridValues"]!
+                .map((x) => IntGridValueDefinition.fromJson(x))),
+        parallaxFactorX: json["parallaxFactorX"]?.toDouble(),
+        parallaxFactorY: json["parallaxFactorY"]?.toDouble(),
+        parallaxScaling: json["parallaxScaling"],
+        pxOffsetX: json["pxOffsetX"],
+        pxOffsetY: json["pxOffsetY"],
+        requiredTags: json["requiredTags"] == null
+            ? []
+            : List<String>.from(json["requiredTags"]!.map((x) => x)),
+        tilePivotX: json["tilePivotX"]?.toDouble(),
+        tilePivotY: json["tilePivotY"]?.toDouble(),
+        tilesetDefUid: json["tilesetDefUid"],
+        layerDefinitionType: typeValues.map[json["type"]],
+        uid: json["uid"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "__type": type,
-    "autoRuleGroups": autoRuleGroups == null ? [] : List<dynamic>.from(autoRuleGroups!.map((x) => x.toJson())),
-    "autoSourceLayerDefUid": autoSourceLayerDefUid,
-    "autoTilesetDefUid": autoTilesetDefUid,
-    "canSelectWhenInactive": canSelectWhenInactive,
-    "displayOpacity": displayOpacity,
-    "doc": doc,
-    "excludedTags": excludedTags == null ? [] : List<dynamic>.from(excludedTags!.map((x) => x)),
-    "gridSize": gridSize,
-    "guideGridHei": guideGridHei,
-    "guideGridWid": guideGridWid,
-    "hideFieldsWhenInactive": hideFieldsWhenInactive,
-    "hideInList": hideInList,
-    "identifier": identifier,
-    "inactiveOpacity": inactiveOpacity,
-    "intGridValues": intGridValues == null ? [] : List<dynamic>.from(intGridValues!.map((x) => x.toJson())),
-    "parallaxFactorX": parallaxFactorX,
-    "parallaxFactorY": parallaxFactorY,
-    "parallaxScaling": parallaxScaling,
-    "pxOffsetX": pxOffsetX,
-    "pxOffsetY": pxOffsetY,
-    "requiredTags": requiredTags == null ? [] : List<dynamic>.from(requiredTags!.map((x) => x)),
-    "tilePivotX": tilePivotX,
-    "tilePivotY": tilePivotY,
-    "tilesetDefUid": tilesetDefUid,
-    "type": typeValues.reverse[layerDefinitionType],
-    "uid": uid,
-  };
+        "__type": type,
+        "autoRuleGroups": autoRuleGroups == null
+            ? []
+            : List<dynamic>.from(autoRuleGroups!.map((x) => x.toJson())),
+        "autoSourceLayerDefUid": autoSourceLayerDefUid,
+        "autoTilesetDefUid": autoTilesetDefUid,
+        "canSelectWhenInactive": canSelectWhenInactive,
+        "displayOpacity": displayOpacity,
+        "doc": doc,
+        "excludedTags": excludedTags == null
+            ? []
+            : List<dynamic>.from(excludedTags!.map((x) => x)),
+        "gridSize": gridSize,
+        "guideGridHei": guideGridHei,
+        "guideGridWid": guideGridWid,
+        "hideFieldsWhenInactive": hideFieldsWhenInactive,
+        "hideInList": hideInList,
+        "identifier": identifier,
+        "inactiveOpacity": inactiveOpacity,
+        "intGridValues": intGridValues == null
+            ? []
+            : List<dynamic>.from(intGridValues!.map((x) => x.toJson())),
+        "parallaxFactorX": parallaxFactorX,
+        "parallaxFactorY": parallaxFactorY,
+        "parallaxScaling": parallaxScaling,
+        "pxOffsetX": pxOffsetX,
+        "pxOffsetY": pxOffsetY,
+        "requiredTags": requiredTags == null
+            ? []
+            : List<dynamic>.from(requiredTags!.map((x) => x)),
+        "tilePivotX": tilePivotX,
+        "tilePivotY": tilePivotY,
+        "tilesetDefUid": tilesetDefUid,
+        "type": typeValues.reverse[layerDefinitionType],
+        "uid": uid,
+      };
 }
 
 class AutoLayerRuleGroup {
@@ -1226,31 +1363,37 @@ class AutoLayerRuleGroup {
   int? uid;
   bool? usesWizard;
 
-  factory AutoLayerRuleGroup.fromRawJson(String str) => AutoLayerRuleGroup.fromJson(json.decode(str));
+  factory AutoLayerRuleGroup.fromRawJson(String str) =>
+      AutoLayerRuleGroup.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory AutoLayerRuleGroup.fromJson(Map<String, dynamic> json) => AutoLayerRuleGroup(
-    active: json["active"],
-    collapsed: json["collapsed"],
-    isOptional: json["isOptional"],
-    name: json["name"],
-    rules: json["rules"] == null ? [] : List<AutoLayerRuleDefinition>.from(json["rules"]!.map((x) => AutoLayerRuleDefinition.fromJson(x))),
-    uid: json["uid"],
-    usesWizard: json["usesWizard"],
-  );
+  factory AutoLayerRuleGroup.fromJson(Map<String, dynamic> json) =>
+      AutoLayerRuleGroup(
+        active: json["active"],
+        collapsed: json["collapsed"],
+        isOptional: json["isOptional"],
+        name: json["name"],
+        rules: json["rules"] == null
+            ? []
+            : List<AutoLayerRuleDefinition>.from(
+                json["rules"]!.map((x) => AutoLayerRuleDefinition.fromJson(x))),
+        uid: json["uid"],
+        usesWizard: json["usesWizard"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "active": active,
-    "collapsed": collapsed,
-    "isOptional": isOptional,
-    "name": name,
-    "rules": rules == null ? [] : List<dynamic>.from(rules!.map((x) => x.toJson())),
-    "uid": uid,
-    "usesWizard": usesWizard,
-  };
+        "active": active,
+        "collapsed": collapsed,
+        "isOptional": isOptional,
+        "name": name,
+        "rules": rules == null
+            ? []
+            : List<dynamic>.from(rules!.map((x) => x.toJson())),
+        "uid": uid,
+        "usesWizard": usesWizard,
+      };
 }
-
 
 ///This complex section isn't meant to be used by game devs at all, as these rules are
 ///completely resolved internally by the editor before any saving. You should just ignore
@@ -1280,7 +1423,6 @@ class AutoLayerRuleDefinition {
     this.yModulo,
     this.yOffset,
   });
-
 
   ///If FALSE, the rule effect isn't applied, and no tiles are generated.
   bool? active;
@@ -1343,61 +1485,68 @@ class AutoLayerRuleDefinition {
   ///Y cell start offset
   int? yOffset;
 
-  factory AutoLayerRuleDefinition.fromRawJson(String str) => AutoLayerRuleDefinition.fromJson(json.decode(str));
+  factory AutoLayerRuleDefinition.fromRawJson(String str) =>
+      AutoLayerRuleDefinition.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory AutoLayerRuleDefinition.fromJson(Map<String, dynamic> json) => AutoLayerRuleDefinition(
-    active: json["active"],
-    breakOnMatch: json["breakOnMatch"],
-    chance: json["chance"]?.toDouble(),
-    checker: checkerValues.map[json["checker"]],
-    flipX: json["flipX"],
-    flipY: json["flipY"],
-    outOfBoundsValue: json["outOfBoundsValue"],
-    pattern: json["pattern"] == null ? [] : List<int>.from(json["pattern"]!.map((x) => x)),
-    perlinActive: json["perlinActive"],
-    perlinOctaves: json["perlinOctaves"]?.toDouble(),
-    perlinScale: json["perlinScale"]?.toDouble(),
-    perlinSeed: json["perlinSeed"]?.toDouble(),
-    pivotX: json["pivotX"]?.toDouble(),
-    pivotY: json["pivotY"]?.toDouble(),
-    size: json["size"],
-    tileIds: json["tileIds"] == null ? [] : List<int>.from(json["tileIds"]!.map((x) => x)),
-    tileMode: tileModeValues.map[json["tileMode"]],
-    uid: json["uid"],
-    xModulo: json["xModulo"],
-    xOffset: json["xOffset"],
-    yModulo: json["yModulo"],
-    yOffset: json["yOffset"],
-  );
+  factory AutoLayerRuleDefinition.fromJson(Map<String, dynamic> json) =>
+      AutoLayerRuleDefinition(
+        active: json["active"],
+        breakOnMatch: json["breakOnMatch"],
+        chance: json["chance"]?.toDouble(),
+        checker: checkerValues.map[json["checker"]],
+        flipX: json["flipX"],
+        flipY: json["flipY"],
+        outOfBoundsValue: json["outOfBoundsValue"],
+        pattern: json["pattern"] == null
+            ? []
+            : List<int>.from(json["pattern"]!.map((x) => x)),
+        perlinActive: json["perlinActive"],
+        perlinOctaves: json["perlinOctaves"]?.toDouble(),
+        perlinScale: json["perlinScale"]?.toDouble(),
+        perlinSeed: json["perlinSeed"]?.toDouble(),
+        pivotX: json["pivotX"]?.toDouble(),
+        pivotY: json["pivotY"]?.toDouble(),
+        size: json["size"],
+        tileIds: json["tileIds"] == null
+            ? []
+            : List<int>.from(json["tileIds"]!.map((x) => x)),
+        tileMode: tileModeValues.map[json["tileMode"]],
+        uid: json["uid"],
+        xModulo: json["xModulo"],
+        xOffset: json["xOffset"],
+        yModulo: json["yModulo"],
+        yOffset: json["yOffset"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "active": active,
-    "breakOnMatch": breakOnMatch,
-    "chance": chance,
-    "checker": checkerValues.reverse[checker],
-    "flipX": flipX,
-    "flipY": flipY,
-    "outOfBoundsValue": outOfBoundsValue,
-    "pattern": pattern == null ? [] : List<dynamic>.from(pattern!.map((x) => x)),
-    "perlinActive": perlinActive,
-    "perlinOctaves": perlinOctaves,
-    "perlinScale": perlinScale,
-    "perlinSeed": perlinSeed,
-    "pivotX": pivotX,
-    "pivotY": pivotY,
-    "size": size,
-    "tileIds": tileIds == null ? [] : List<dynamic>.from(tileIds!.map((x) => x)),
-    "tileMode": tileModeValues.reverse[tileMode],
-    "uid": uid,
-    "xModulo": xModulo,
-    "xOffset": xOffset,
-    "yModulo": yModulo,
-    "yOffset": yOffset,
-  };
+        "active": active,
+        "breakOnMatch": breakOnMatch,
+        "chance": chance,
+        "checker": checkerValues.reverse[checker],
+        "flipX": flipX,
+        "flipY": flipY,
+        "outOfBoundsValue": outOfBoundsValue,
+        "pattern":
+            pattern == null ? [] : List<dynamic>.from(pattern!.map((x) => x)),
+        "perlinActive": perlinActive,
+        "perlinOctaves": perlinOctaves,
+        "perlinScale": perlinScale,
+        "perlinSeed": perlinSeed,
+        "pivotX": pivotX,
+        "pivotY": pivotY,
+        "size": size,
+        "tileIds":
+            tileIds == null ? [] : List<dynamic>.from(tileIds!.map((x) => x)),
+        "tileMode": tileModeValues.reverse[tileMode],
+        "uid": uid,
+        "xModulo": xModulo,
+        "xOffset": xOffset,
+        "yModulo": yModulo,
+        "yOffset": yOffset,
+      };
 }
-
 
 ///Checker mode Possible values: `None`, `Horizontal`, `Vertical`
 enum Checker { NONE, HORIZONTAL, VERTICAL }
@@ -1408,15 +1557,11 @@ final checkerValues = EnumValues({
   "Vertical": Checker.VERTICAL
 });
 
-
 ///Defines how tileIds array is used Possible values: `Single`, `Stamp`
 enum TileMode { SINGLE, STAMP }
 
-final tileModeValues = EnumValues({
-  "Single": TileMode.SINGLE,
-  "Stamp": TileMode.STAMP
-});
-
+final tileModeValues =
+    EnumValues({"Single": TileMode.SINGLE, "Stamp": TileMode.STAMP});
 
 ///IntGrid value definition
 class IntGridValueDefinition {
@@ -1434,23 +1579,24 @@ class IntGridValueDefinition {
   ///The IntGrid value itself
   int? value;
 
-  factory IntGridValueDefinition.fromRawJson(String str) => IntGridValueDefinition.fromJson(json.decode(str));
+  factory IntGridValueDefinition.fromRawJson(String str) =>
+      IntGridValueDefinition.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory IntGridValueDefinition.fromJson(Map<String, dynamic> json) => IntGridValueDefinition(
-    color: json["color"],
-    identifier: json["identifier"],
-    value: json["value"],
-  );
+  factory IntGridValueDefinition.fromJson(Map<String, dynamic> json) =>
+      IntGridValueDefinition(
+        color: json["color"],
+        identifier: json["identifier"],
+        value: json["value"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "color": color,
-    "identifier": identifier,
-    "value": value,
-  };
+        "color": color,
+        "identifier": identifier,
+        "value": value,
+      };
 }
-
 
 ///Type of the layer as Haxe Enum Possible values: `IntGrid`, `Entities`, `Tiles`,
 ///`AutoLayer`
@@ -1462,7 +1608,6 @@ final typeValues = EnumValues({
   "IntGrid": Type.INT_GRID,
   "Tiles": Type.TILES
 });
-
 
 ///The `Tileset` definition is the most important part among project definitions. It
 ///contains some extra informations about each integrated tileset. If you only had to parse
@@ -1487,7 +1632,6 @@ class TilesetDefinition {
     this.tileGridSize,
     this.uid,
   });
-
 
   ///Grid-based height
   int? cHei;
@@ -1542,51 +1686,74 @@ class TilesetDefinition {
   ///Unique Intidentifier
   int? uid;
 
-  factory TilesetDefinition.fromRawJson(String str) => TilesetDefinition.fromJson(json.decode(str));
+  factory TilesetDefinition.fromRawJson(String str) =>
+      TilesetDefinition.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory TilesetDefinition.fromJson(Map<String, dynamic> json) => TilesetDefinition(
-    cHei: json["__cHei"],
-    cWid: json["__cWid"],
-    cachedPixelData: Map.from(json["cachedPixelData"]!).map((k, v) => MapEntry<String, dynamic>(k, v)),
-    customData: json["customData"] == null ? [] : List<TileCustomMetadata>.from(json["customData"]!.map((x) => TileCustomMetadata.fromJson(x))),
-    embedAtlas: embedAtlasValues.map[json["embedAtlas"]],
-    enumTags: json["enumTags"] == null ? [] : List<EnumTagValue>.from(json["enumTags"]!.map((x) => EnumTagValue.fromJson(x))),
-    identifier: json["identifier"],
-    padding: json["padding"],
-    pxHei: json["pxHei"],
-    pxWid: json["pxWid"],
-    relPath: json["relPath"],
-    savedSelections: json["savedSelections"] == null ? [] : List<Map<String, dynamic>>.from(json["savedSelections"]!.map((x) => Map.from(x).map((k, v) => MapEntry<String, dynamic>(k, v)))),
-    spacing: json["spacing"],
-    tags: json["tags"] == null ? [] : List<String>.from(json["tags"]!.map((x) => x)),
-    tagsSourceEnumUid: json["tagsSourceEnumUid"],
-    tileGridSize: json["tileGridSize"],
-    uid: json["uid"],
-  );
+  factory TilesetDefinition.fromJson(Map<String, dynamic> json) =>
+      TilesetDefinition(
+        cHei: json["__cHei"],
+        cWid: json["__cWid"],
+        cachedPixelData:
+            Map.from(json["cachedPixelData"] ?? <String, dynamic>{})
+                .map((k, v) => MapEntry<String, dynamic>(k, v)),
+        customData: json["customData"] == null
+            ? []
+            : List<TileCustomMetadata>.from(
+                json["customData"]!.map((x) => TileCustomMetadata.fromJson(x))),
+        embedAtlas: embedAtlasValues.map[json["embedAtlas"]],
+        enumTags: json["enumTags"] == null
+            ? []
+            : List<EnumTagValue>.from(
+                json["enumTags"]!.map((x) => EnumTagValue.fromJson(x))),
+        identifier: json["identifier"],
+        padding: json["padding"],
+        pxHei: json["pxHei"],
+        pxWid: json["pxWid"],
+        relPath: json["relPath"],
+        savedSelections: json["savedSelections"] == null
+            ? []
+            : List<Map<String, dynamic>>.from(json["savedSelections"]!.map(
+                (x) => Map.from(x)
+                    .map((k, v) => MapEntry<String, dynamic>(k, v)))),
+        spacing: json["spacing"],
+        tags: json["tags"] == null
+            ? []
+            : List<String>.from(json["tags"]!.map((x) => x)),
+        tagsSourceEnumUid: json["tagsSourceEnumUid"],
+        tileGridSize: json["tileGridSize"],
+        uid: json["uid"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "__cHei": cHei,
-    "__cWid": cWid,
-    "cachedPixelData": Map.from(cachedPixelData!).map((k, v) => MapEntry<String, dynamic>(k, v)),
-    "customData": customData == null ? [] : List<dynamic>.from(customData!.map((x) => x.toJson())),
-    "embedAtlas": embedAtlasValues.reverse[embedAtlas],
-    "enumTags": enumTags == null ? [] : List<dynamic>.from(enumTags!.map((x) => x.toJson())),
-    "identifier": identifier,
-    "padding": padding,
-    "pxHei": pxHei,
-    "pxWid": pxWid,
-    "relPath": relPath,
-    "savedSelections": savedSelections == null ? [] : List<dynamic>.from(savedSelections!.map((x) => Map.from(x).map((k, v) => MapEntry<String, dynamic>(k, v)))),
-    "spacing": spacing,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-    "tagsSourceEnumUid": tagsSourceEnumUid,
-    "tileGridSize": tileGridSize,
-    "uid": uid,
-  };
+        "__cHei": cHei,
+        "__cWid": cWid,
+        "cachedPixelData": Map.from(cachedPixelData!)
+            .map((k, v) => MapEntry<String, dynamic>(k, v)),
+        "customData": customData == null
+            ? []
+            : List<dynamic>.from(customData!.map((x) => x.toJson())),
+        "embedAtlas": embedAtlasValues.reverse[embedAtlas],
+        "enumTags": enumTags == null
+            ? []
+            : List<dynamic>.from(enumTags!.map((x) => x.toJson())),
+        "identifier": identifier,
+        "padding": padding,
+        "pxHei": pxHei,
+        "pxWid": pxWid,
+        "relPath": relPath,
+        "savedSelections": savedSelections == null
+            ? []
+            : List<dynamic>.from(savedSelections!.map((x) =>
+                Map.from(x).map((k, v) => MapEntry<String, dynamic>(k, v)))),
+        "spacing": spacing,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
+        "tagsSourceEnumUid": tagsSourceEnumUid,
+        "tileGridSize": tileGridSize,
+        "uid": uid,
+      };
 }
-
 
 ///In a tileset definition, user defined meta-data of a tile.
 class TileCustomMetadata {
@@ -1598,27 +1765,26 @@ class TileCustomMetadata {
   String? data;
   int? tileId;
 
-  factory TileCustomMetadata.fromRawJson(String str) => TileCustomMetadata.fromJson(json.decode(str));
+  factory TileCustomMetadata.fromRawJson(String str) =>
+      TileCustomMetadata.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory TileCustomMetadata.fromJson(Map<String, dynamic> json) => TileCustomMetadata(
-    data: json["data"],
-    tileId: json["tileId"],
-  );
+  factory TileCustomMetadata.fromJson(Map<String, dynamic> json) =>
+      TileCustomMetadata(
+        data: json["data"],
+        tileId: json["tileId"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "data": data,
-    "tileId": tileId,
-  };
+        "data": data,
+        "tileId": tileId,
+      };
 }
 
 enum EmbedAtlas { LDTK_ICONS }
 
-final embedAtlasValues = EnumValues({
-  "LdtkIcons": EmbedAtlas.LDTK_ICONS
-});
-
+final embedAtlasValues = EnumValues({"LdtkIcons": EmbedAtlas.LDTK_ICONS});
 
 ///In a tileset definition, enum based tag infos
 class EnumTagValue {
@@ -1630,22 +1796,33 @@ class EnumTagValue {
   String? enumValueId;
   List<int>? tileIds;
 
-  factory EnumTagValue.fromRawJson(String str) => EnumTagValue.fromJson(json.decode(str));
+  factory EnumTagValue.fromRawJson(String str) =>
+      EnumTagValue.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory EnumTagValue.fromJson(Map<String, dynamic> json) => EnumTagValue(
-    enumValueId: json["enumValueId"],
-    tileIds: json["tileIds"] == null ? [] : List<int>.from(json["tileIds"]!.map((x) => x)),
-  );
+        enumValueId: json["enumValueId"],
+        tileIds: json["tileIds"] == null
+            ? []
+            : List<int>.from(json["tileIds"]!.map((x) => x)),
+      );
 
   Map<String, dynamic> toJson() => {
-    "enumValueId": enumValueId,
-    "tileIds": tileIds == null ? [] : List<dynamic>.from(tileIds!.map((x) => x)),
-  };
+        "enumValueId": enumValueId,
+        "tileIds":
+            tileIds == null ? [] : List<dynamic>.from(tileIds!.map((x) => x)),
+      };
 }
 
-enum Flag { DISCARD_PRE_CSV_INT_GRID, EXPORT_PRE_CSV_INT_GRID_FORMAT, IGNORE_BACKUP_SUGGEST, PREPEND_INDEX_TO_LEVEL_FILE_NAMES, MULTI_WORLDS, USE_MULTILINES_TYPE }
+enum Flag {
+  DISCARD_PRE_CSV_INT_GRID,
+  EXPORT_PRE_CSV_INT_GRID_FORMAT,
+  IGNORE_BACKUP_SUGGEST,
+  PREPEND_INDEX_TO_LEVEL_FILE_NAMES,
+  MULTI_WORLDS,
+  USE_MULTILINES_TYPE
+}
 
 final flagValues = EnumValues({
   "DiscardPreCsvIntGrid": Flag.DISCARD_PRE_CSV_INT_GRID,
@@ -1655,7 +1832,6 @@ final flagValues = EnumValues({
   "PrependIndexToLevelFileNames": Flag.PREPEND_INDEX_TO_LEVEL_FILE_NAMES,
   "UseMultilinesType": Flag.USE_MULTILINES_TYPE
 });
-
 
 ///This object is not actually used by LDtk. It ONLY exists to force explicit references to
 ///all types, to make sure QuickType finds them and integrate all of them. Otherwise,
@@ -1717,67 +1893,115 @@ class ForcedRefs {
   TilesetRectangle? tilesetRect;
   World? world;
 
-  factory ForcedRefs.fromRawJson(String str) => ForcedRefs.fromJson(json.decode(str));
+  factory ForcedRefs.fromRawJson(String str) =>
+      ForcedRefs.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory ForcedRefs.fromJson(Map<String, dynamic> json) => ForcedRefs(
-    autoLayerRuleGroup: json["AutoLayerRuleGroup"] == null ? null : AutoLayerRuleGroup.fromJson(json["AutoLayerRuleGroup"]),
-    autoRuleDef: json["AutoRuleDef"] == null ? null : AutoLayerRuleDefinition.fromJson(json["AutoRuleDef"]),
-    customCommand: json["CustomCommand"] == null ? null : LdtkCustomCommand.fromJson(json["CustomCommand"]),
-    definitions: json["Definitions"] == null ? null : Definitions.fromJson(json["Definitions"]),
-    entityDef: json["EntityDef"] == null ? null : EntityDefinition.fromJson(json["EntityDef"]),
-    entityInstance: json["EntityInstance"] == null ? null : EntityInstance.fromJson(json["EntityInstance"]),
-    entityReferenceInfos: json["EntityReferenceInfos"] == null ? null : ReferenceToAnEntityInstance.fromJson(json["EntityReferenceInfos"]),
-    enumDef: json["EnumDef"] == null ? null : EnumDefinition.fromJson(json["EnumDef"]),
-    enumDefValues: json["EnumDefValues"] == null ? null : EnumValueDefinition.fromJson(json["EnumDefValues"]),
-    enumTagValue: json["EnumTagValue"] == null ? null : EnumTagValue.fromJson(json["EnumTagValue"]),
-    fieldDef: json["FieldDef"] == null ? null : FieldDefinition.fromJson(json["FieldDef"]),
-    fieldInstance: json["FieldInstance"] == null ? null : FieldInstance.fromJson(json["FieldInstance"]),
-    gridPoint: json["GridPoint"] == null ? null : GridPoint.fromJson(json["GridPoint"]),
-    intGridValueDef: json["IntGridValueDef"] == null ? null : IntGridValueDefinition.fromJson(json["IntGridValueDef"]),
-    intGridValueInstance: json["IntGridValueInstance"] == null ? null : IntGridValueInstance.fromJson(json["IntGridValueInstance"]),
-    layerDef: json["LayerDef"] == null ? null : LayerDefinition.fromJson(json["LayerDef"]),
-    layerInstance: json["LayerInstance"] == null ? null : LayerInstance.fromJson(json["LayerInstance"]),
-    level: json["Level"] == null ? null : Level.fromJson(json["Level"]),
-    levelBgPosInfos: json["LevelBgPosInfos"] == null ? null : LevelBackgroundPosition.fromJson(json["LevelBgPosInfos"]),
-    neighbourLevel: json["NeighbourLevel"] == null ? null : NeighbourLevel.fromJson(json["NeighbourLevel"]),
-    tableOfContentEntry: json["TableOfContentEntry"] == null ? null : LdtkTableOfContentEntry.fromJson(json["TableOfContentEntry"]),
-    tile: json["Tile"] == null ? null : TileInstance.fromJson(json["Tile"]),
-    tileCustomMetadata: json["TileCustomMetadata"] == null ? null : TileCustomMetadata.fromJson(json["TileCustomMetadata"]),
-    tilesetDef: json["TilesetDef"] == null ? null : TilesetDefinition.fromJson(json["TilesetDef"]),
-    tilesetRect: json["TilesetRect"] == null ? null : TilesetRectangle.fromJson(json["TilesetRect"]),
-    world: json["World"] == null ? null : World.fromJson(json["World"]),
-  );
+        autoLayerRuleGroup: json["AutoLayerRuleGroup"] == null
+            ? null
+            : AutoLayerRuleGroup.fromJson(json["AutoLayerRuleGroup"]),
+        autoRuleDef: json["AutoRuleDef"] == null
+            ? null
+            : AutoLayerRuleDefinition.fromJson(json["AutoRuleDef"]),
+        customCommand: json["CustomCommand"] == null
+            ? null
+            : LdtkCustomCommand.fromJson(json["CustomCommand"]),
+        definitions: json["Definitions"] == null
+            ? null
+            : Definitions.fromJson(json["Definitions"]),
+        entityDef: json["EntityDef"] == null
+            ? null
+            : EntityDefinition.fromJson(json["EntityDef"]),
+        entityInstance: json["EntityInstance"] == null
+            ? null
+            : EntityInstance.fromJson(json["EntityInstance"]),
+        entityReferenceInfos: json["EntityReferenceInfos"] == null
+            ? null
+            : ReferenceToAnEntityInstance.fromJson(
+                json["EntityReferenceInfos"]),
+        enumDef: json["EnumDef"] == null
+            ? null
+            : EnumDefinition.fromJson(json["EnumDef"]),
+        enumDefValues: json["EnumDefValues"] == null
+            ? null
+            : EnumValueDefinition.fromJson(json["EnumDefValues"]),
+        enumTagValue: json["EnumTagValue"] == null
+            ? null
+            : EnumTagValue.fromJson(json["EnumTagValue"]),
+        fieldDef: json["FieldDef"] == null
+            ? null
+            : FieldDefinition.fromJson(json["FieldDef"]),
+        fieldInstance: json["FieldInstance"] == null
+            ? null
+            : FieldInstance.fromJson(json["FieldInstance"]),
+        gridPoint: json["GridPoint"] == null
+            ? null
+            : GridPoint.fromJson(json["GridPoint"]),
+        intGridValueDef: json["IntGridValueDef"] == null
+            ? null
+            : IntGridValueDefinition.fromJson(json["IntGridValueDef"]),
+        intGridValueInstance: json["IntGridValueInstance"] == null
+            ? null
+            : IntGridValueInstance.fromJson(json["IntGridValueInstance"]),
+        layerDef: json["LayerDef"] == null
+            ? null
+            : LayerDefinition.fromJson(json["LayerDef"]),
+        layerInstance: json["LayerInstance"] == null
+            ? null
+            : LayerInstance.fromJson(json["LayerInstance"]),
+        level: json["Level"] == null ? null : Level.fromJson(json["Level"]),
+        levelBgPosInfos: json["LevelBgPosInfos"] == null
+            ? null
+            : LevelBackgroundPosition.fromJson(json["LevelBgPosInfos"]),
+        neighbourLevel: json["NeighbourLevel"] == null
+            ? null
+            : NeighbourLevel.fromJson(json["NeighbourLevel"]),
+        tableOfContentEntry: json["TableOfContentEntry"] == null
+            ? null
+            : LdtkTableOfContentEntry.fromJson(json["TableOfContentEntry"]),
+        tile: json["Tile"] == null ? null : TileInstance.fromJson(json["Tile"]),
+        tileCustomMetadata: json["TileCustomMetadata"] == null
+            ? null
+            : TileCustomMetadata.fromJson(json["TileCustomMetadata"]),
+        tilesetDef: json["TilesetDef"] == null
+            ? null
+            : TilesetDefinition.fromJson(json["TilesetDef"]),
+        tilesetRect: json["TilesetRect"] == null
+            ? null
+            : TilesetRectangle.fromJson(json["TilesetRect"]),
+        world: json["World"] == null ? null : World.fromJson(json["World"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "AutoLayerRuleGroup": autoLayerRuleGroup?.toJson(),
-    "AutoRuleDef": autoRuleDef?.toJson(),
-    "CustomCommand": customCommand?.toJson(),
-    "Definitions": definitions?.toJson(),
-    "EntityDef": entityDef?.toJson(),
-    "EntityInstance": entityInstance?.toJson(),
-    "EntityReferenceInfos": entityReferenceInfos?.toJson(),
-    "EnumDef": enumDef?.toJson(),
-    "EnumDefValues": enumDefValues?.toJson(),
-    "EnumTagValue": enumTagValue?.toJson(),
-    "FieldDef": fieldDef?.toJson(),
-    "FieldInstance": fieldInstance?.toJson(),
-    "GridPoint": gridPoint?.toJson(),
-    "IntGridValueDef": intGridValueDef?.toJson(),
-    "IntGridValueInstance": intGridValueInstance?.toJson(),
-    "LayerDef": layerDef?.toJson(),
-    "LayerInstance": layerInstance?.toJson(),
-    "Level": level?.toJson(),
-    "LevelBgPosInfos": levelBgPosInfos?.toJson(),
-    "NeighbourLevel": neighbourLevel?.toJson(),
-    "TableOfContentEntry": tableOfContentEntry?.toJson(),
-    "Tile": tile?.toJson(),
-    "TileCustomMetadata": tileCustomMetadata?.toJson(),
-    "TilesetDef": tilesetDef?.toJson(),
-    "TilesetRect": tilesetRect?.toJson(),
-    "World": world?.toJson(),
-  };
+        "AutoLayerRuleGroup": autoLayerRuleGroup?.toJson(),
+        "AutoRuleDef": autoRuleDef?.toJson(),
+        "CustomCommand": customCommand?.toJson(),
+        "Definitions": definitions?.toJson(),
+        "EntityDef": entityDef?.toJson(),
+        "EntityInstance": entityInstance?.toJson(),
+        "EntityReferenceInfos": entityReferenceInfos?.toJson(),
+        "EnumDef": enumDef?.toJson(),
+        "EnumDefValues": enumDefValues?.toJson(),
+        "EnumTagValue": enumTagValue?.toJson(),
+        "FieldDef": fieldDef?.toJson(),
+        "FieldInstance": fieldInstance?.toJson(),
+        "GridPoint": gridPoint?.toJson(),
+        "IntGridValueDef": intGridValueDef?.toJson(),
+        "IntGridValueInstance": intGridValueInstance?.toJson(),
+        "LayerDef": layerDef?.toJson(),
+        "LayerInstance": layerInstance?.toJson(),
+        "Level": level?.toJson(),
+        "LevelBgPosInfos": levelBgPosInfos?.toJson(),
+        "NeighbourLevel": neighbourLevel?.toJson(),
+        "TableOfContentEntry": tableOfContentEntry?.toJson(),
+        "Tile": tile?.toJson(),
+        "TileCustomMetadata": tileCustomMetadata?.toJson(),
+        "TilesetDef": tilesetDef?.toJson(),
+        "TilesetRect": tilesetRect?.toJson(),
+        "World": world?.toJson(),
+      };
 }
 
 class EntityInstance {
@@ -1795,7 +2019,6 @@ class EntityInstance {
     this.px,
     this.width,
   });
-
 
   ///Grid-based coordinates (`[x,y]` format)
   List<int>? grid;
@@ -1838,39 +2061,54 @@ class EntityInstance {
   ///definition.
   int? width;
 
-  factory EntityInstance.fromRawJson(String str) => EntityInstance.fromJson(json.decode(str));
+  factory EntityInstance.fromRawJson(String str) =>
+      EntityInstance.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory EntityInstance.fromJson(Map<String, dynamic> json) => EntityInstance(
-    grid: json["__grid"] == null ? [] : List<int>.from(json["__grid"]!.map((x) => x)),
-    identifier: json["__identifier"],
-    pivot: json["__pivot"] == null ? [] : List<double>.from(json["__pivot"]!.map((x) => x?.toDouble())),
-    smartColor: json["__smartColor"],
-    tags: json["__tags"] == null ? [] : List<String>.from(json["__tags"]!.map((x) => x)),
-    tile: json["__tile"] == null ? null : TilesetRectangle.fromJson(json["__tile"]),
-    defUid: json["defUid"],
-    fieldInstances: json["fieldInstances"] == null ? [] : List<FieldInstance>.from(json["fieldInstances"]!.map((x) => FieldInstance.fromJson(x))),
-    height: json["height"],
-    iid: json["iid"],
-    px: json["px"] == null ? [] : List<int>.from(json["px"]!.map((x) => x)),
-    width: json["width"],
-  );
+        grid: json["__grid"] == null
+            ? []
+            : List<int>.from(json["__grid"]!.map((x) => x)),
+        identifier: json["__identifier"],
+        pivot: json["__pivot"] == null
+            ? []
+            : List<double>.from(json["__pivot"]!.map((x) => x?.toDouble())),
+        smartColor: json["__smartColor"],
+        tags: json["__tags"] == null
+            ? []
+            : List<String>.from(json["__tags"]!.map((x) => x)),
+        tile: json["__tile"] == null
+            ? null
+            : TilesetRectangle.fromJson(json["__tile"]),
+        defUid: json["defUid"],
+        fieldInstances: json["fieldInstances"] == null
+            ? []
+            : List<FieldInstance>.from(
+                json["fieldInstances"]!.map((x) => FieldInstance.fromJson(x))),
+        height: json["height"],
+        iid: json["iid"],
+        px: json["px"] == null ? [] : List<int>.from(json["px"]!.map((x) => x)),
+        width: json["width"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "__grid": grid == null ? [] : List<dynamic>.from(grid!.map((x) => x)),
-    "__identifier": identifier,
-    "__pivot": pivot == null ? [] : List<dynamic>.from(pivot!.map((x) => x)),
-    "__smartColor": smartColor,
-    "__tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-    "__tile": tile?.toJson(),
-    "defUid": defUid,
-    "fieldInstances": fieldInstances == null ? [] : List<dynamic>.from(fieldInstances!.map((x) => x.toJson())),
-    "height": height,
-    "iid": iid,
-    "px": px == null ? [] : List<dynamic>.from(px!.map((x) => x)),
-    "width": width,
-  };
+        "__grid": grid == null ? [] : List<dynamic>.from(grid!.map((x) => x)),
+        "__identifier": identifier,
+        "__pivot":
+            pivot == null ? [] : List<dynamic>.from(pivot!.map((x) => x)),
+        "__smartColor": smartColor,
+        "__tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
+        "__tile": tile?.toJson(),
+        "defUid": defUid,
+        "fieldInstances": fieldInstances == null
+            ? []
+            : List<dynamic>.from(fieldInstances!.map((x) => x.toJson())),
+        "height": height,
+        "iid": iid,
+        "px": px == null ? [] : List<dynamic>.from(px!.map((x) => x)),
+        "width": width,
+      };
 }
 
 class FieldInstance {
@@ -1882,7 +2120,6 @@ class FieldInstance {
     this.defUid,
     this.realEditorValues,
   });
-
 
   ///Field definition identifier
   String? identifier;
@@ -1913,29 +2150,35 @@ class FieldInstance {
   ///Editor internal raw values
   List<dynamic>? realEditorValues;
 
-  factory FieldInstance.fromRawJson(String str) => FieldInstance.fromJson(json.decode(str));
+  factory FieldInstance.fromRawJson(String str) =>
+      FieldInstance.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory FieldInstance.fromJson(Map<String, dynamic> json) => FieldInstance(
-    identifier: json["__identifier"],
-    tile: json["__tile"] == null ? null : TilesetRectangle.fromJson(json["__tile"]),
-    type: json["__type"],
-    value: json["__value"],
-    defUid: json["defUid"],
-    realEditorValues: json["realEditorValues"] == null ? [] : List<dynamic>.from(json["realEditorValues"]!.map((x) => x)),
-  );
+        identifier: json["__identifier"],
+        tile: json["__tile"] == null
+            ? null
+            : TilesetRectangle.fromJson(json["__tile"]),
+        type: json["__type"],
+        value: json["__value"],
+        defUid: json["defUid"],
+        realEditorValues: json["realEditorValues"] == null
+            ? []
+            : List<dynamic>.from(json["realEditorValues"]!.map((x) => x)),
+      );
 
   Map<String, dynamic> toJson() => {
-    "__identifier": identifier,
-    "__tile": tile?.toJson(),
-    "__type": type,
-    "__value": value,
-    "defUid": defUid,
-    "realEditorValues": realEditorValues == null ? [] : List<dynamic>.from(realEditorValues!.map((x) => x)),
-  };
+        "__identifier": identifier,
+        "__tile": tile?.toJson(),
+        "__type": type,
+        "__value": value,
+        "defUid": defUid,
+        "realEditorValues": realEditorValues == null
+            ? []
+            : List<dynamic>.from(realEditorValues!.map((x) => x)),
+      };
 }
-
 
 ///This object describes the "location" of an Entity instance in the project worlds.
 class ReferenceToAnEntityInstance {
@@ -1945,7 +2188,6 @@ class ReferenceToAnEntityInstance {
     this.levelIid,
     this.worldIid,
   });
-
 
   ///IID of the refered EntityInstance
   String? entityIid;
@@ -1959,25 +2201,26 @@ class ReferenceToAnEntityInstance {
   ///IID of the World containing the refered EntityInstance
   String? worldIid;
 
-  factory ReferenceToAnEntityInstance.fromRawJson(String str) => ReferenceToAnEntityInstance.fromJson(json.decode(str));
+  factory ReferenceToAnEntityInstance.fromRawJson(String str) =>
+      ReferenceToAnEntityInstance.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory ReferenceToAnEntityInstance.fromJson(Map<String, dynamic> json) => ReferenceToAnEntityInstance(
-    entityIid: json["entityIid"],
-    layerIid: json["layerIid"],
-    levelIid: json["levelIid"],
-    worldIid: json["worldIid"],
-  );
+  factory ReferenceToAnEntityInstance.fromJson(Map<String, dynamic> json) =>
+      ReferenceToAnEntityInstance(
+        entityIid: json["entityIid"],
+        layerIid: json["layerIid"],
+        levelIid: json["levelIid"],
+        worldIid: json["worldIid"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "entityIid": entityIid,
-    "layerIid": layerIid,
-    "levelIid": levelIid,
-    "worldIid": worldIid,
-  };
+        "entityIid": entityIid,
+        "layerIid": layerIid,
+        "levelIid": levelIid,
+        "worldIid": worldIid,
+      };
 }
-
 
 ///This object is just a grid-based coordinate used in Field values.
 class GridPoint {
@@ -1986,28 +2229,27 @@ class GridPoint {
     this.cy,
   });
 
-
   ///X grid-based coordinate
   int? cx;
 
   ///Y grid-based coordinate
   int? cy;
 
-  factory GridPoint.fromRawJson(String str) => GridPoint.fromJson(json.decode(str));
+  factory GridPoint.fromRawJson(String str) =>
+      GridPoint.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory GridPoint.fromJson(Map<String, dynamic> json) => GridPoint(
-    cx: json["cx"],
-    cy: json["cy"],
-  );
+        cx: json["cx"],
+        cy: json["cy"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "cx": cx,
-    "cy": cy,
-  };
+        "cx": cx,
+        "cy": cy,
+      };
 }
-
 
 ///IntGrid value instance
 class IntGridValueInstance {
@@ -2016,26 +2258,27 @@ class IntGridValueInstance {
     this.v,
   });
 
-
   ///Coordinate ID in the layer grid
   int? coordId;
 
   ///IntGrid value
   int? v;
 
-  factory IntGridValueInstance.fromRawJson(String str) => IntGridValueInstance.fromJson(json.decode(str));
+  factory IntGridValueInstance.fromRawJson(String str) =>
+      IntGridValueInstance.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory IntGridValueInstance.fromJson(Map<String, dynamic> json) => IntGridValueInstance(
-    coordId: json["coordId"],
-    v: json["v"],
-  );
+  factory IntGridValueInstance.fromJson(Map<String, dynamic> json) =>
+      IntGridValueInstance(
+        coordId: json["coordId"],
+        v: json["v"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "coordId": coordId,
-    "v": v,
-  };
+        "coordId": coordId,
+        "v": v,
+      };
 }
 
 class LayerInstance {
@@ -2065,7 +2308,6 @@ class LayerInstance {
     this.seed,
     this.visible,
   });
-
 
   ///Grid-based height
   int? cHei;
@@ -2147,65 +2389,93 @@ class LayerInstance {
   ///Layer instance visibility
   bool? visible;
 
-  factory LayerInstance.fromRawJson(String str) => LayerInstance.fromJson(json.decode(str));
+  factory LayerInstance.fromRawJson(String str) =>
+      LayerInstance.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory LayerInstance.fromJson(Map<String, dynamic> json) => LayerInstance(
-    cHei: json["__cHei"],
-    cWid: json["__cWid"],
-    gridSize: json["__gridSize"],
-    identifier: json["__identifier"],
-    opacity: json["__opacity"]?.toDouble(),
-    pxTotalOffsetX: json["__pxTotalOffsetX"],
-    pxTotalOffsetY: json["__pxTotalOffsetY"],
-    tilesetDefUid: json["__tilesetDefUid"],
-    tilesetRelPath: json["__tilesetRelPath"],
-    type: json["__type"],
-    autoLayerTiles: json["autoLayerTiles"] == null ? [] : List<TileInstance>.from(json["autoLayerTiles"]!.map((x) => TileInstance.fromJson(x))),
-    entityInstances: json["entityInstances"] == null ? [] : List<EntityInstance>.from(json["entityInstances"]!.map((x) => EntityInstance.fromJson(x))),
-    gridTiles: json["gridTiles"] == null ? [] : List<TileInstance>.from(json["gridTiles"]!.map((x) => TileInstance.fromJson(x))),
-    iid: json["iid"],
-    intGrid: json["intGrid"] == null ? [] : List<IntGridValueInstance>.from(json["intGrid"]!.map((x) => IntGridValueInstance.fromJson(x))),
-    intGridCsv: json["intGridCsv"] == null ? [] : List<int>.from(json["intGridCsv"]!.map((x) => x)),
-    layerDefUid: json["layerDefUid"],
-    levelId: json["levelId"],
-    optionalRules: json["optionalRules"] == null ? [] : List<int>.from(json["optionalRules"]!.map((x) => x)),
-    overrideTilesetUid: json["overrideTilesetUid"],
-    pxOffsetX: json["pxOffsetX"],
-    pxOffsetY: json["pxOffsetY"],
-    seed: json["seed"],
-    visible: json["visible"],
-  );
+        cHei: json["__cHei"],
+        cWid: json["__cWid"],
+        gridSize: json["__gridSize"],
+        identifier: json["__identifier"],
+        opacity: json["__opacity"]?.toDouble(),
+        pxTotalOffsetX: json["__pxTotalOffsetX"],
+        pxTotalOffsetY: json["__pxTotalOffsetY"],
+        tilesetDefUid: json["__tilesetDefUid"],
+        tilesetRelPath: json["__tilesetRelPath"],
+        type: json["__type"],
+        autoLayerTiles: json["autoLayerTiles"] == null
+            ? []
+            : List<TileInstance>.from(
+                json["autoLayerTiles"]!.map((x) => TileInstance.fromJson(x))),
+        entityInstances: json["entityInstances"] == null
+            ? []
+            : List<EntityInstance>.from(json["entityInstances"]!
+                .map((x) => EntityInstance.fromJson(x))),
+        gridTiles: json["gridTiles"] == null
+            ? []
+            : List<TileInstance>.from(
+                json["gridTiles"]!.map((x) => TileInstance.fromJson(x))),
+        iid: json["iid"],
+        intGrid: json["intGrid"] == null
+            ? []
+            : List<IntGridValueInstance>.from(
+                json["intGrid"]!.map((x) => IntGridValueInstance.fromJson(x))),
+        intGridCsv: json["intGridCsv"] == null
+            ? []
+            : List<int>.from(json["intGridCsv"]!.map((x) => x)),
+        layerDefUid: json["layerDefUid"],
+        levelId: json["levelId"],
+        optionalRules: json["optionalRules"] == null
+            ? []
+            : List<int>.from(json["optionalRules"]!.map((x) => x)),
+        overrideTilesetUid: json["overrideTilesetUid"],
+        pxOffsetX: json["pxOffsetX"],
+        pxOffsetY: json["pxOffsetY"],
+        seed: json["seed"],
+        visible: json["visible"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "__cHei": cHei,
-    "__cWid": cWid,
-    "__gridSize": gridSize,
-    "__identifier": identifier,
-    "__opacity": opacity,
-    "__pxTotalOffsetX": pxTotalOffsetX,
-    "__pxTotalOffsetY": pxTotalOffsetY,
-    "__tilesetDefUid": tilesetDefUid,
-    "__tilesetRelPath": tilesetRelPath,
-    "__type": type,
-    "autoLayerTiles": autoLayerTiles == null ? [] : List<dynamic>.from(autoLayerTiles!.map((x) => x.toJson())),
-    "entityInstances": entityInstances == null ? [] : List<dynamic>.from(entityInstances!.map((x) => x.toJson())),
-    "gridTiles": gridTiles == null ? [] : List<dynamic>.from(gridTiles!.map((x) => x.toJson())),
-    "iid": iid,
-    "intGrid": intGrid == null ? [] : List<dynamic>.from(intGrid!.map((x) => x.toJson())),
-    "intGridCsv": intGridCsv == null ? [] : List<dynamic>.from(intGridCsv!.map((x) => x)),
-    "layerDefUid": layerDefUid,
-    "levelId": levelId,
-    "optionalRules": optionalRules == null ? [] : List<dynamic>.from(optionalRules!.map((x) => x)),
-    "overrideTilesetUid": overrideTilesetUid,
-    "pxOffsetX": pxOffsetX,
-    "pxOffsetY": pxOffsetY,
-    "seed": seed,
-    "visible": visible,
-  };
+        "__cHei": cHei,
+        "__cWid": cWid,
+        "__gridSize": gridSize,
+        "__identifier": identifier,
+        "__opacity": opacity,
+        "__pxTotalOffsetX": pxTotalOffsetX,
+        "__pxTotalOffsetY": pxTotalOffsetY,
+        "__tilesetDefUid": tilesetDefUid,
+        "__tilesetRelPath": tilesetRelPath,
+        "__type": type,
+        "autoLayerTiles": autoLayerTiles == null
+            ? []
+            : List<dynamic>.from(autoLayerTiles!.map((x) => x.toJson())),
+        "entityInstances": entityInstances == null
+            ? []
+            : List<dynamic>.from(entityInstances!.map((x) => x.toJson())),
+        "gridTiles": gridTiles == null
+            ? []
+            : List<dynamic>.from(gridTiles!.map((x) => x.toJson())),
+        "iid": iid,
+        "intGrid": intGrid == null
+            ? []
+            : List<dynamic>.from(intGrid!.map((x) => x.toJson())),
+        "intGridCsv": intGridCsv == null
+            ? []
+            : List<dynamic>.from(intGridCsv!.map((x) => x)),
+        "layerDefUid": layerDefUid,
+        "levelId": levelId,
+        "optionalRules": optionalRules == null
+            ? []
+            : List<dynamic>.from(optionalRules!.map((x) => x)),
+        "overrideTilesetUid": overrideTilesetUid,
+        "pxOffsetX": pxOffsetX,
+        "pxOffsetY": pxOffsetY,
+        "seed": seed,
+        "visible": visible,
+      };
 }
-
 
 ///This structure represents a single tile from a given Tileset.
 class TileInstance {
@@ -2216,7 +2486,6 @@ class TileInstance {
     this.src,
     this.t,
   });
-
 
   ///Internal data used by the editor.<br/>  For auto-layer tiles: `[ruleId, coordId]`.<br/>
   ///For tile-layer tiles: `[coordId]`.
@@ -2237,27 +2506,29 @@ class TileInstance {
   ///The *Tile ID* in the corresponding tileset.
   int? t;
 
-  factory TileInstance.fromRawJson(String str) => TileInstance.fromJson(json.decode(str));
+  factory TileInstance.fromRawJson(String str) =>
+      TileInstance.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory TileInstance.fromJson(Map<String, dynamic> json) => TileInstance(
-    d: json["d"] == null ? [] : List<int>.from(json["d"]!.map((x) => x)),
-    f: json["f"],
-    px: json["px"] == null ? [] : List<int>.from(json["px"]!.map((x) => x)),
-    src: json["src"] == null ? [] : List<int>.from(json["src"]!.map((x) => x)),
-    t: json["t"],
-  );
+        d: json["d"] == null ? [] : List<int>.from(json["d"]!.map((x) => x)),
+        f: json["f"],
+        px: json["px"] == null ? [] : List<int>.from(json["px"]!.map((x) => x)),
+        src: json["src"] == null
+            ? []
+            : List<int>.from(json["src"]!.map((x) => x)),
+        t: json["t"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "d": d == null ? [] : List<dynamic>.from(d!.map((x) => x)),
-    "f": f,
-    "px": px == null ? [] : List<dynamic>.from(px!.map((x) => x)),
-    "src": src == null ? [] : List<dynamic>.from(src!.map((x) => x)),
-    "t": t,
-  };
+        "d": d == null ? [] : List<dynamic>.from(d!.map((x) => x)),
+        "f": f,
+        "px": px == null ? [] : List<dynamic>.from(px!.map((x) => x)),
+        "src": src == null ? [] : List<dynamic>.from(src!.map((x) => x)),
+        "t": t,
+      };
 }
-
 
 ///This section contains all the level data. It can be found in 2 distinct forms, depending
 ///on Project current settings:  - If "*Separate level files*" is **disabled** (default):
@@ -2291,7 +2562,6 @@ class Level {
     this.worldX,
     this.worldY,
   });
-
 
   ///Background color of the level (same as `bgColor`, except the default value is
   ///automatically used here if its value is `null`)
@@ -2379,54 +2649,70 @@ class Level {
   String toRawJson() => json.encode(toJson());
 
   factory Level.fromJson(Map<String, dynamic> json) => Level(
-    bgColor: json["__bgColor"],
-    bgPos: json["__bgPos"] == null ? null : LevelBackgroundPosition.fromJson(json["__bgPos"]),
-    neighbours: json["__neighbours"] == null ? [] : List<NeighbourLevel>.from(json["__neighbours"]!.map((x) => NeighbourLevel.fromJson(x))),
-    smartColor: json["__smartColor"],
-    levelBgColor: json["bgColor"],
-    bgPivotX: json["bgPivotX"]?.toDouble(),
-    bgPivotY: json["bgPivotY"]?.toDouble(),
-    levelBgPos: bgPosValues.map[json["bgPos"]],
-    bgRelPath: json["bgRelPath"],
-    externalRelPath: json["externalRelPath"],
-    fieldInstances: json["fieldInstances"] == null ? [] : List<FieldInstance>.from(json["fieldInstances"]!.map((x) => FieldInstance.fromJson(x))),
-    identifier: json["identifier"],
-    iid: json["iid"],
-    layerInstances: json["layerInstances"] == null ? [] : List<LayerInstance>.from(json["layerInstances"]!.map((x) => LayerInstance.fromJson(x))),
-    pxHei: json["pxHei"],
-    pxWid: json["pxWid"],
-    uid: json["uid"],
-    useAutoIdentifier: json["useAutoIdentifier"],
-    worldDepth: json["worldDepth"],
-    worldX: json["worldX"],
-    worldY: json["worldY"],
-  );
+        bgColor: json["__bgColor"],
+        bgPos: json["__bgPos"] == null
+            ? null
+            : LevelBackgroundPosition.fromJson(json["__bgPos"]),
+        neighbours: json["__neighbours"] == null
+            ? []
+            : List<NeighbourLevel>.from(
+                json["__neighbours"]!.map((x) => NeighbourLevel.fromJson(x))),
+        smartColor: json["__smartColor"],
+        levelBgColor: json["bgColor"],
+        bgPivotX: json["bgPivotX"]?.toDouble(),
+        bgPivotY: json["bgPivotY"]?.toDouble(),
+        levelBgPos: bgPosValues.map[json["bgPos"]],
+        bgRelPath: json["bgRelPath"],
+        externalRelPath: json["externalRelPath"],
+        fieldInstances: json["fieldInstances"] == null
+            ? []
+            : List<FieldInstance>.from(
+                json["fieldInstances"]!.map((x) => FieldInstance.fromJson(x))),
+        identifier: json["identifier"],
+        iid: json["iid"],
+        layerInstances: json["layerInstances"] == null
+            ? []
+            : List<LayerInstance>.from(
+                json["layerInstances"]!.map((x) => LayerInstance.fromJson(x))),
+        pxHei: json["pxHei"],
+        pxWid: json["pxWid"],
+        uid: json["uid"],
+        useAutoIdentifier: json["useAutoIdentifier"],
+        worldDepth: json["worldDepth"],
+        worldX: json["worldX"],
+        worldY: json["worldY"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "__bgColor": bgColor,
-    "__bgPos": bgPos?.toJson(),
-    "__neighbours": neighbours == null ? [] : List<dynamic>.from(neighbours!.map((x) => x.toJson())),
-    "__smartColor": smartColor,
-    "bgColor": levelBgColor,
-    "bgPivotX": bgPivotX,
-    "bgPivotY": bgPivotY,
-    "bgPos": bgPosValues.reverse[levelBgPos],
-    "bgRelPath": bgRelPath,
-    "externalRelPath": externalRelPath,
-    "fieldInstances": fieldInstances == null ? [] : List<dynamic>.from(fieldInstances!.map((x) => x.toJson())),
-    "identifier": identifier,
-    "iid": iid,
-    "layerInstances": layerInstances == null ? [] : List<dynamic>.from(layerInstances!.map((x) => x.toJson())),
-    "pxHei": pxHei,
-    "pxWid": pxWid,
-    "uid": uid,
-    "useAutoIdentifier": useAutoIdentifier,
-    "worldDepth": worldDepth,
-    "worldX": worldX,
-    "worldY": worldY,
-  };
+        "__bgColor": bgColor,
+        "__bgPos": bgPos?.toJson(),
+        "__neighbours": neighbours == null
+            ? []
+            : List<dynamic>.from(neighbours!.map((x) => x.toJson())),
+        "__smartColor": smartColor,
+        "bgColor": levelBgColor,
+        "bgPivotX": bgPivotX,
+        "bgPivotY": bgPivotY,
+        "bgPos": bgPosValues.reverse[levelBgPos],
+        "bgRelPath": bgRelPath,
+        "externalRelPath": externalRelPath,
+        "fieldInstances": fieldInstances == null
+            ? []
+            : List<dynamic>.from(fieldInstances!.map((x) => x.toJson())),
+        "identifier": identifier,
+        "iid": iid,
+        "layerInstances": layerInstances == null
+            ? []
+            : List<dynamic>.from(layerInstances!.map((x) => x.toJson())),
+        "pxHei": pxHei,
+        "pxWid": pxWid,
+        "uid": uid,
+        "useAutoIdentifier": useAutoIdentifier,
+        "worldDepth": worldDepth,
+        "worldX": worldX,
+        "worldY": worldY,
+      };
 }
-
 
 ///Level background image position info
 class LevelBackgroundPosition {
@@ -2435,7 +2721,6 @@ class LevelBackgroundPosition {
     this.scale,
     this.topLeftPx,
   });
-
 
   ///An array of 4 float values describing the cropped sub-rectangle of the displayed
   ///background image. This cropping happens when original is larger than the level bounds.
@@ -2450,21 +2735,32 @@ class LevelBackgroundPosition {
   ///**cropped** background image, depending on `bgPos` option.
   List<int>? topLeftPx;
 
-  factory LevelBackgroundPosition.fromRawJson(String str) => LevelBackgroundPosition.fromJson(json.decode(str));
+  factory LevelBackgroundPosition.fromRawJson(String str) =>
+      LevelBackgroundPosition.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory LevelBackgroundPosition.fromJson(Map<String, dynamic> json) => LevelBackgroundPosition(
-    cropRect: json["cropRect"] == null ? [] : List<double>.from(json["cropRect"]!.map((x) => x?.toDouble())),
-    scale: json["scale"] == null ? [] : List<double>.from(json["scale"]!.map((x) => x?.toDouble())),
-    topLeftPx: json["topLeftPx"] == null ? [] : List<int>.from(json["topLeftPx"]!.map((x) => x)),
-  );
+  factory LevelBackgroundPosition.fromJson(Map<String, dynamic> json) =>
+      LevelBackgroundPosition(
+        cropRect: json["cropRect"] == null
+            ? []
+            : List<double>.from(json["cropRect"]!.map((x) => x?.toDouble())),
+        scale: json["scale"] == null
+            ? []
+            : List<double>.from(json["scale"]!.map((x) => x?.toDouble())),
+        topLeftPx: json["topLeftPx"] == null
+            ? []
+            : List<int>.from(json["topLeftPx"]!.map((x) => x)),
+      );
 
   Map<String, dynamic> toJson() => {
-    "cropRect": cropRect == null ? [] : List<dynamic>.from(cropRect!.map((x) => x)),
-    "scale": scale == null ? [] : List<dynamic>.from(scale!.map((x) => x)),
-    "topLeftPx": topLeftPx == null ? [] : List<dynamic>.from(topLeftPx!.map((x) => x)),
-  };
+        "cropRect":
+            cropRect == null ? [] : List<dynamic>.from(cropRect!.map((x) => x)),
+        "scale": scale == null ? [] : List<dynamic>.from(scale!.map((x) => x)),
+        "topLeftPx": topLeftPx == null
+            ? []
+            : List<dynamic>.from(topLeftPx!.map((x) => x)),
+      };
 }
 
 enum BgPos { UNSCALED, CONTAIN, COVER, COVER_DIRTY }
@@ -2476,7 +2772,6 @@ final bgPosValues = EnumValues({
   "Unscaled": BgPos.UNSCALED
 });
 
-
 ///Nearby level info
 class NeighbourLevel {
   NeighbourLevel({
@@ -2484,7 +2779,6 @@ class NeighbourLevel {
     this.levelIid,
     this.levelUid,
   });
-
 
   ///A single lowercase character tipping on the level location (`n`orth, `s`outh, `w`est,
   ///`e`ast).
@@ -2497,21 +2791,22 @@ class NeighbourLevel {
   ///by: `levelIid`
   int? levelUid;
 
-  factory NeighbourLevel.fromRawJson(String str) => NeighbourLevel.fromJson(json.decode(str));
+  factory NeighbourLevel.fromRawJson(String str) =>
+      NeighbourLevel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory NeighbourLevel.fromJson(Map<String, dynamic> json) => NeighbourLevel(
-    dir: json["dir"],
-    levelIid: json["levelIid"],
-    levelUid: json["levelUid"],
-  );
+        dir: json["dir"],
+        levelIid: json["levelIid"],
+        levelUid: json["levelUid"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "dir": dir,
-    "levelIid": levelIid,
-    "levelUid": levelUid,
-  };
+        "dir": dir,
+        "levelIid": levelIid,
+        "levelUid": levelUid,
+      };
 }
 
 class LdtkTableOfContentEntry {
@@ -2523,21 +2818,27 @@ class LdtkTableOfContentEntry {
   String? identifier;
   List<ReferenceToAnEntityInstance>? instances;
 
-  factory LdtkTableOfContentEntry.fromRawJson(String str) => LdtkTableOfContentEntry.fromJson(json.decode(str));
+  factory LdtkTableOfContentEntry.fromRawJson(String str) =>
+      LdtkTableOfContentEntry.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory LdtkTableOfContentEntry.fromJson(Map<String, dynamic> json) => LdtkTableOfContentEntry(
-    identifier: json["identifier"],
-    instances: json["instances"] == null ? [] : List<ReferenceToAnEntityInstance>.from(json["instances"]!.map((x) => ReferenceToAnEntityInstance.fromJson(x))),
-  );
+  factory LdtkTableOfContentEntry.fromJson(Map<String, dynamic> json) =>
+      LdtkTableOfContentEntry(
+        identifier: json["identifier"],
+        instances: json["instances"] == null
+            ? []
+            : List<ReferenceToAnEntityInstance>.from(json["instances"]!
+                .map((x) => ReferenceToAnEntityInstance.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "identifier": identifier,
-    "instances": instances == null ? [] : List<dynamic>.from(instances!.map((x) => x.toJson())),
-  };
+        "identifier": identifier,
+        "instances": instances == null
+            ? []
+            : List<dynamic>.from(instances!.map((x) => x.toJson())),
+      };
 }
-
 
 ///**IMPORTANT**: this type is not used *yet* in current LDtk version. It's only presented
 ///here as a preview of a planned feature.  A World contains multiple levels, and it has its
@@ -2553,7 +2854,6 @@ class World {
     this.worldGridWidth,
     this.worldLayout,
   });
-
 
   ///Default new level height
   int? defaultLevelHeight;
@@ -2587,26 +2887,30 @@ class World {
   String toRawJson() => json.encode(toJson());
 
   factory World.fromJson(Map<String, dynamic> json) => World(
-    defaultLevelHeight: json["defaultLevelHeight"],
-    defaultLevelWidth: json["defaultLevelWidth"],
-    identifier: json["identifier"],
-    iid: json["iid"],
-    levels: json["levels"] == null ? [] : List<Level>.from(json["levels"]!.map((x) => Level.fromJson(x))),
-    worldGridHeight: json["worldGridHeight"],
-    worldGridWidth: json["worldGridWidth"],
-    worldLayout: worldLayoutValues.map[json["worldLayout"]],
-  );
+        defaultLevelHeight: json["defaultLevelHeight"],
+        defaultLevelWidth: json["defaultLevelWidth"],
+        identifier: json["identifier"],
+        iid: json["iid"],
+        levels: json["levels"] == null
+            ? []
+            : List<Level>.from(json["levels"]!.map((x) => Level.fromJson(x))),
+        worldGridHeight: json["worldGridHeight"],
+        worldGridWidth: json["worldGridWidth"],
+        worldLayout: worldLayoutValues.map[json["worldLayout"]],
+      );
 
   Map<String, dynamic> toJson() => {
-    "defaultLevelHeight": defaultLevelHeight,
-    "defaultLevelWidth": defaultLevelWidth,
-    "identifier": identifier,
-    "iid": iid,
-    "levels": levels == null ? [] : List<dynamic>.from(levels!.map((x) => x.toJson())),
-    "worldGridHeight": worldGridHeight,
-    "worldGridWidth": worldGridWidth,
-    "worldLayout": worldLayoutValues.reverse[worldLayout],
-  };
+        "defaultLevelHeight": defaultLevelHeight,
+        "defaultLevelWidth": defaultLevelWidth,
+        "identifier": identifier,
+        "iid": iid,
+        "levels": levels == null
+            ? []
+            : List<dynamic>.from(levels!.map((x) => x.toJson())),
+        "worldGridHeight": worldGridHeight,
+        "worldGridWidth": worldGridWidth,
+        "worldLayout": worldLayoutValues.reverse[worldLayout],
+      };
 }
 
 enum WorldLayout { FREE, GRID_VANIA, LINEAR_HORIZONTAL, LINEAR_VERTICAL }
@@ -2617,7 +2921,6 @@ final worldLayoutValues = EnumValues({
   "LinearHorizontal": WorldLayout.LINEAR_HORIZONTAL,
   "LinearVertical": WorldLayout.LINEAR_VERTICAL
 });
-
 
 ///Naming convention for Identifiers (first-letter uppercase, full uppercase etc.) Possible
 ///values: `Capitalize`, `Uppercase`, `Lowercase`, `Free`
@@ -2630,10 +2933,14 @@ final identifierStyleValues = EnumValues({
   "Uppercase": IdentifierStyle.UPPERCASE
 });
 
-
 ///"Image export" option when saving project. Possible values: `None`, `OneImagePerLayer`,
 ///`OneImagePerLevel`, `LayersAndLevels`
-enum ImageExportMode { NONE, ONE_IMAGE_PER_LAYER, ONE_IMAGE_PER_LEVEL, LAYERS_AND_LEVELS }
+enum ImageExportMode {
+  NONE,
+  ONE_IMAGE_PER_LAYER,
+  ONE_IMAGE_PER_LEVEL,
+  LAYERS_AND_LEVELS
+}
 
 final imageExportModeValues = EnumValues({
   "LayersAndLevels": ImageExportMode.LAYERS_AND_LEVELS,

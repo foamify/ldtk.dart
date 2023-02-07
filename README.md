@@ -7,5 +7,7 @@ How to update:
 2. Quicktype settings:
    - Source type = JSON Schema,
    - Language = Dart,
+   - [x] Check 'Null Safety'
    - [x] Check 'Put encoder & decoder in Class'
-3. After pasting, find `!,` and replace with `,`
+3. In the generated dart code, find all `!,` and replace with `,`
+4. Find `json["cachedPixelData"]!` and replace with `json["cachedPixelData"] ?? <String, dynamic>{}`
